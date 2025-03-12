@@ -9,13 +9,23 @@ namespace Genspil
     
     internal class Boardgame
     {
-        private string navn;
-        private string udgave;
-        private string stand;
-        private string genre;
-        private int antalSpillere;
-        private double pris;
+        private string _name;
+        private string _edition;
+        private string _genre;
+        private int _playerAmount;
+        private double _price;
+        private bool _inStock;
+        private bool _repair;
 
+        private enum _condition
+        {
+            broken = 0,
+            bad = 1,
+            worn = 2,
+            scratced = 3,
+            perfect = 4
+        }
 
     }
 }
+ 

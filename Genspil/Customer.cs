@@ -10,5 +10,9 @@ namespace Genspil
 
     internal class Customer
     {
+        private string _name;
+        private string _email;
+        private int _phoneNumber;
+
     }
 }

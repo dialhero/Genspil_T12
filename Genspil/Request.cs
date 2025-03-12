@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Genspil
 {
-    internal class Forespørgsel
+    internal class Request
     {
+        private int _amount;
+       
     }
 }
