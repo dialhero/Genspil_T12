@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            Customer.LoadCustomersFromFile(); // Indlæs kunder fra fil ved programstart
             Customer customerManager = new Customer();  // Instans af Customer til at tilføje kunder
 
 
@@ -15,6 +16,9 @@
                 Console.WriteLine("3. Print filen ud");
                 Console.WriteLine("4. Tilføj kunde");
                 Console.WriteLine("5. Fjern kunde");
+                Console.WriteLine("6. Gem kundeliste til fil\n");
+
+                //Console.WriteLine("99. Vis kunder\n");
 
 
                 string choice = Console.ReadLine();
@@ -33,13 +37,13 @@
                         break;
 
                     case "4":
-                        Console.Write("\nIndtast kundens navn:");
+                        Console.Write("\nIndtast kundens navn: ");
                         string name = Console.ReadLine();
 
-                        Console.Write("\nIndtast kundens email:");
+                        Console.Write("Indtast kundens email: ");
                         string email = Console.ReadLine();
 
-                        Console.Write("\nIndtast kundens telefonnummer:");
+                        Console.Write("Indtast kundens telefonnummer: ");
                         int phoneNumber;
                         while (!int.TryParse(Console.ReadLine(), out phoneNumber))
                         {
@@ -47,11 +51,32 @@
                         }
 
                         customerManager.AddCustomer(name, email, phoneNumber);
+
                         break;
 
                     case "5":
-                        ;
+                        Console.WriteLine("\nIndtast telefonnummeret på kunden, der skal fjernes:");
+                        
+                        int deletePhoneNumber;
+                        while (!int.TryParse(Console.ReadLine(), out deletePhoneNumber))
+                        {
+                            Console.WriteLine("Fejl! Indtast et gyldigt telefonnummer:");
+                        }
+
+                        customerManager.DeleteCustomer(deletePhoneNumber);
                         break;
+
+                    case "6":
+                        Customer.SaveCustomersToFile();
+                        Console.WriteLine("Kunder gemt til fil.");
+                        break;
+
+
+                     case "99":
+                     Customer.ShowCustomers();
+
+                     break;
+                    
 
                     default:
                         return;
