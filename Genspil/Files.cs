@@ -3,22 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Genspil.Boardgame;
 
 namespace Genspil
 {
     internal class Files
     {
-        public static void SaveToFile(string filename)
+        public static void SaveOneToFile(string filename, Boardgame boardgame)
         {
             // Åbn StreamWriter i append-tilstand (true betyder "tilføj til filen")
             using (StreamWriter writer = new StreamWriter(filename, true)) // true betyder "append"
             {
+
+                writer.WriteLine($"{boardgame.name},{boardgame.edition},{boardgame.genre},{boardgame.playerAmount},{boardgame.price},{boardgame.gameCondition},{boardgame.amount}");
+
+            }
+        }
+        public static void SaveListToFile(string filename)
+        {
+            // Åbn StreamWriter i append-tilstand (true betyder "tilføj til filen")
+            using (StreamWriter writer = new StreamWriter(filename))
+            {
                 foreach (var boardgame in Boardgame.Boardgames)
                 {
-                    writer.WriteLine($"Name: {boardgame.name}, Edition: {boardgame.edition}, Genre: {boardgame.genre}, Players: {boardgame.playerAmount}, Price: {boardgame.price}");
+                    writer.WriteLine($"{boardgame.name},{boardgame.edition},{boardgame.genre},{boardgame.playerAmount},{boardgame.price},{boardgame.gameCondition},{boardgame.amount}");
                 }
             }
         }
+
         public static void PrintFromFile(string filename)
         {
             try
@@ -38,6 +50,7 @@ namespace Genspil
                 Console.WriteLine($"Der opstod en fejl: {ex.Message}");
             }
         }
+
         public static void LoadBoardgamesFromFile(string filename)
         {
             try
@@ -53,10 +66,12 @@ namespace Genspil
                         string genre = data[2];
                         int playerAmount = int.Parse(data[3]);
                         double price = double.Parse(data[4]);
-                       
+                        Condition gameCondition = (Condition)Enum.Parse(typeof(Condition), data[5]);
+                        int amount = int.Parse(data[6]);
 
-                        Boardgame boardgame = new Boardgame(name, edition, genre, playerAmount, price);
+                        Boardgame boardgame = new Boardgame(name, edition, genre, playerAmount, price, gameCondition, amount);
                         Boardgame.Boardgames.Add(boardgame);
+
                     }
                 }
             }
