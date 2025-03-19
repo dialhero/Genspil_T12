@@ -62,7 +62,7 @@ namespace Genspil
 
                         Boardgame boardgame = new Boardgame(boardName, edition, genre, playerAmount, price, gameCondition, amount);
 
-                        Boardgame.NewBoardgame(boardgame);
+                        Boardgame.addGame(boardgame);
                         break;
                     case "2":
                         Boardgame.PrintListWares();
