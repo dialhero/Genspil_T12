@@ -1,4 +1,6 @@
-﻿namespace Genspil
+﻿using static Genspil.Boardgame;
+
+namespace Genspil
 {
     internal class Program
     {
@@ -6,6 +8,7 @@
         {
             Customer.LoadCustomersFromFile(); // Indlæs kunder fra fil ved programstart
             Customer customerManager = new Customer();  // Instans af Customer til at tilføje kunder
+            Files.LoadBoardgamesFromFile("boardgames.txt");
 
 
             while (true)
@@ -26,7 +29,40 @@
                 switch (choice)
                 {
                     case "1":
-                        Boardgame.NewBoardgame();
+                        //Boardgame.NewBoardgame();
+                        Console.WriteLine("Indtast spillets navn: ");
+                        string boardName = Console.ReadLine();
+
+                        Console.WriteLine("Indtast spillets udgave: ");
+                        string edition = Console.ReadLine();
+
+                        Console.WriteLine("Indtast spillets genre: ");
+                        string genre = Console.ReadLine();
+
+                        Console.WriteLine("Indtast spillets player amount: ");
+                        int playerAmount = Convert.ToInt32(Console.ReadLine());
+
+                        Console.WriteLine("Indtast spillets pris: ");
+                        double price = Convert.ToDouble(Console.ReadLine());
+
+                        Console.WriteLine("Indtast spillets stand (0=broken, 1=bad, 2=worn, 3=scratched, 4=perfect): ");
+                        int gameConditionInt = Convert.ToInt32(Console.ReadLine());
+
+                        // Tjek om værdien er en gyldig enum-værdi
+                        if (!Enum.IsDefined(typeof(Condition), gameConditionInt))
+                        {
+                            Console.WriteLine("Ugyldig stand, sætter til 'perfect'.");
+                            gameConditionInt = (int)Condition.perfect;
+                        }
+                        Condition gameCondition = (Condition)gameConditionInt;
+
+                        Console.WriteLine("Hvor mange spil: ");
+                        int amount = Convert.ToInt32(Console.ReadLine());
+
+
+                        Boardgame boardgame = new Boardgame(boardName, edition, genre, playerAmount, price, gameCondition, amount);
+
+                        Boardgame.NewBoardgame(boardgame);
                         break;
                     case "2":
                         Boardgame.PrintListWares();

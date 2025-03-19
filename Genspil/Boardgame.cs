@@ -48,59 +48,80 @@ namespace Genspil
         public double price => _price;
         public Condition gameCondition => _gameCondition;
 
-
-        public static Boardgame NewBoardgame()
+        public static void NewBoardgame(Boardgame newGame)
         {
-            Console.WriteLine("intast spillets navn: ");
-            string name = Console.ReadLine();
-
-            Console.WriteLine("indtast spillets udgave: ");
-            string edition = Console.ReadLine();
-
-            Console.WriteLine("indtast spillets genre: ");
-            string genre = Console.ReadLine();
-
-            Console.WriteLine("indtast spillets player amount: ");
-            int playerAmount = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("indtast spillets pris: ");
-            double price = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine("Indtast spillets stand (0=broken, 1=bad, 2=worn, 3=scratched, 4=perfect): ");
-            int gameConditionInt = Convert.ToInt32(Console.ReadLine());
-
-            // Check if the entered value is a valid enum value
-            if (!Enum.IsDefined(typeof(Condition), gameConditionInt))
-            {
-                Console.WriteLine("Ugyldig stand, sætter til 'perfect'.");
-                gameConditionInt = (int)Condition.perfect;
-            }
-            Condition gameCondition = (Condition)gameConditionInt;
-
-            Console.WriteLine("hvor mange spil: ");
-            int amount = Convert.ToInt32(Console.ReadLine());
-
-            var existingBoardgame = Boardgames.FirstOrDefault(bg => bg.name == name && bg.edition == edition && bg.gameCondition == gameCondition);
+            var existingBoardgame = Boardgames.FirstOrDefault(bg => bg.name == newGame.name && bg.edition == newGame.edition && bg.gameCondition == newGame.gameCondition);
 
             if (existingBoardgame != null)
             {
                 // If found, increase the amount
-                existingBoardgame._amount += amount;
-                Console.WriteLine($"Antallet af {name} er opdateret til {existingBoardgame.amount}.");
+                existingBoardgame._amount += newGame.amount;
+                Console.WriteLine($"Antallet af {newGame.name} er opdateret til {existingBoardgame.amount}.");
                 Files.SaveListToFile("boardgames.txt");
             }
             else
             {
                 // If not found, create a new boardgame
-                Boardgame newBoardgame = new Boardgame(name, edition, genre, playerAmount, price, gameCondition, amount);
+                Boardgame newBoardgame = new Boardgame(newGame.name, newGame.edition, newGame.genre, newGame.playerAmount, newGame.price, newGame.gameCondition, newGame.amount);
                 Boardgames.Add(newBoardgame);
                 Files.SaveOneToFile("boardgames.txt", newBoardgame);
-                Console.WriteLine($"Ny {name} spil er tilføjet.");
+                Console.WriteLine($"Ny {newGame.name} spil er tilføjet.");
             }
-
-            return existingBoardgame ?? new Boardgame(name, edition, genre, playerAmount, price, gameCondition, amount);
-
+           
         }
+
+        //public static Boardgame NewBoardgame()
+        //{
+        //    Console.WriteLine("intast spillets navn: ");
+        //    string name = Console.ReadLine();
+
+        //    Console.WriteLine("indtast spillets udgave: ");
+        //    string edition = Console.ReadLine();
+
+        //    Console.WriteLine("indtast spillets genre: ");
+        //    string genre = Console.ReadLine();
+
+        //    Console.WriteLine("indtast spillets player amount: ");
+        //    int playerAmount = Convert.ToInt32(Console.ReadLine());
+
+        //    Console.WriteLine("indtast spillets pris: ");
+        //    double price = Convert.ToDouble(Console.ReadLine());
+
+        //    Console.WriteLine("Indtast spillets stand (0=broken, 1=bad, 2=worn, 3=scratched, 4=perfect): ");
+        //    int gameConditionInt = Convert.ToInt32(Console.ReadLine());
+
+        //    // Check if the entered value is a valid enum value
+        //    if (!Enum.IsDefined(typeof(Condition), gameConditionInt))
+        //    {
+        //        Console.WriteLine("Ugyldig stand, sætter til 'perfect'.");
+        //        gameConditionInt = (int)Condition.perfect;
+        //    }
+        //    Condition gameCondition = (Condition)gameConditionInt;
+
+        //    Console.WriteLine("hvor mange spil: ");
+        //    int amount = Convert.ToInt32(Console.ReadLine());
+
+        //    var existingBoardgame = Boardgames.FirstOrDefault(bg => bg.name == name && bg.edition == edition && bg.gameCondition == gameCondition);
+
+        //    if (existingBoardgame != null)
+        //    {
+        //        // If found, increase the amount
+        //        existingBoardgame._amount += amount;
+        //        Console.WriteLine($"Antallet af {name} er opdateret til {existingBoardgame.amount}.");
+        //        Files.SaveListToFile("boardgames.txt");
+        //    }
+        //    else
+        //    {
+        //        // If not found, create a new boardgame
+        //        Boardgame newBoardgame = new Boardgame(name, edition, genre, playerAmount, price, gameCondition, amount);
+        //        Boardgames.Add(newBoardgame);
+        //        Files.SaveOneToFile("boardgames.txt", newBoardgame);
+        //        Console.WriteLine($"Ny {name} spil er tilføjet.");
+        //    }
+
+        //    return existingBoardgame ?? new Boardgame(name, edition, genre, playerAmount, price, gameCondition, amount);
+
+        //}
 
         public static void PrintListWares()
         {
