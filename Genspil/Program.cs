@@ -4,6 +4,7 @@ namespace Genspil
 {
     internal class Program
     {
+        
         static void Main(string[] args)
         {
             Customer.LoadCustomersFromFile(); // Indlæs kunder fra fil ved programstart
@@ -19,7 +20,9 @@ namespace Genspil
                 Console.WriteLine("3. Print filen ud");
                 Console.WriteLine("4. Tilføj kunde");
                 Console.WriteLine("5. Fjern kunde");
-                Console.WriteLine("6. Gem kundeliste til fil\n");
+                Console.WriteLine("6. Gem kundeliste til fil");
+                Console.WriteLine("7. Opret forespørgsel på et spil");
+
 
                 //Console.WriteLine("99. Vis kunder\n");
 
@@ -108,6 +111,22 @@ namespace Genspil
                         
                         break;
 
+                    case "7":
+                        Console.WriteLine("Hvilket spil skal der oprettes en forespørgsel på?");
+                        Console.WriteLine("Hvis spillet ikke er på listen nedenfor, skal du først oprette det!");
+                        Boardgame.PrintListWares();
+                        int game = Convert.ToInt32(Console.ReadLine()) - 1;
+                        Console.WriteLine("Indtast kundens telefonnr.?");
+                        int telefonNr = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Hvor mange spil forespørger kunden?");
+                        int requestAmount = Convert.ToInt32(Console.ReadLine());
+                        Request request = new Request(requestAmount, Boardgame.Boardgames[game], Customer.GetCustomerByPhoneNumber(telefonNr));
+                        request.AddRequestToList();
+                        break;
+
+                    case "8":
+                        //Request.PrintRequestList();
+                        break;
 
                      case "99":
                      Customer.ShowCustomers();
