@@ -90,6 +90,8 @@ namespace Genspil
                     writer.WriteLine($"{customer.Name},{customer.Email},{customer.PhoneNumber}");
                 }
             }
+            
+            Console.WriteLine("Kunder gemt til fil.");
 
         }
     }

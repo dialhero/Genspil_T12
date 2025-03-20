@@ -103,8 +103,8 @@ namespace Genspil
                         break;
 
                     case "6":
-                        Files.SaveCustomersToFile();
-                        Console.WriteLine("Kunder gemt til fil.");
+                        
+                        
                         break;
 
 
@@ -125,6 +125,10 @@ namespace Genspil
 
 
 /* Ideer til søgefunktionen - søgetermer adskilt af kommaer. 
+ * 
+ * Skal vi opdatere playerAmount? (min max)
+ *  
+ * PrintListWares, der skal printes til medarbejderne skal inkludere broken spil, men ikke requested spil. OBS på listen! 
  * 
  * 
  * 
