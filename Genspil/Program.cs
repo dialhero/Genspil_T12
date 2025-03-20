@@ -64,6 +64,7 @@ namespace Genspil
 
                         Boardgame.addGame(boardgame);
                         break;
+                    
                     case "2":
                         Boardgame.PrintListWares();
                         break;
