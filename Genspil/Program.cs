@@ -103,7 +103,7 @@ namespace Genspil
                         break;
 
                     case "6":
-                        Customer.SaveCustomersToFile();
+                        Files.SaveCustomersToFile();
                         Console.WriteLine("Kunder gemt til fil.");
                         break;
 
