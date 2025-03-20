@@ -51,10 +51,11 @@ namespace Genspil
 
         public static List<Customer> CustomerList = new List<Customer>();
 
-        public void AddCustomer(string name, string email, int phoneNumber) //Læg save to file ind her, og tilføj file-metoden til class Files
+        public void AddCustomer(string name, string email, int phoneNumber) //SaveCustomersToFile lagt ind i Files, og metoden kaldes efter AddNewCustomer
         {
             Customer newCustomer = new Customer(name, email, phoneNumber);
             CustomerList.Add(newCustomer);
+            Files.SaveCustomersToFile();
             Console.WriteLine($"\nKunde {newCustomer.Name} tilføjet!");
 
         }
@@ -72,18 +73,6 @@ namespace Genspil
             {
                 Console.WriteLine($"Ingen kunde fundet med telefonnummer {phoneNumber}.");
             }
-        }
-
-        public static void SaveCustomersToFile()
-        {
-            using (StreamWriter writer = new StreamWriter("customers.csv"))
-            {
-                foreach (var customer in CustomerList)
-                {
-                    writer.WriteLine($"{customer.Name},{customer.Email},{customer.PhoneNumber}");
-                }
-            }
-
         }
 
         public static void LoadCustomersFromFile()

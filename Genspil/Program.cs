@@ -122,3 +122,10 @@ namespace Genspil
         }
     }
 }
+
+
+/* Ideer til søgefunktionen - søgetermer adskilt af kommaer. 
+ * 
+ * 
+ * 
+ */
