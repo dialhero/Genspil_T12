@@ -51,7 +51,7 @@ namespace Genspil
 
         public static List<Customer> CustomerList = new List<Customer>();
 
-        public void AddCustomer(string name, string email, int phoneNumber)
+        public void AddCustomer(string name, string email, int phoneNumber) //Læg save to file ind her, og tilføj file-metoden til class Files
         {
             Customer newCustomer = new Customer(name, email, phoneNumber);
             CustomerList.Add(newCustomer);
