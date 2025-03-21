@@ -18,9 +18,8 @@ namespace Genspil
                 Console.WriteLine("2. Print listen af spil");
                 Console.WriteLine("3. Print filen ud");
                 Console.WriteLine("4. Tilføj kunde");
-                Console.WriteLine("5. Fjern kunde");
-                Console.WriteLine("6. Gem kundeliste til fil\n");
-
+                Console.WriteLine("5. Fjern kunde\n");
+                
                 //Console.WriteLine("99. Vis kunder\n");
 
 
@@ -131,6 +130,6 @@ namespace Genspil
  *  
  * PrintListWares, der skal printes til medarbejderne skal inkludere broken spil, men ikke requested spil. OBS på listen! 
  * 
- * 
+ * Kan vi inkluderer filerne i vores Git?
  * 
  */
