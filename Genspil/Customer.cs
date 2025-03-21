@@ -123,8 +123,5 @@ namespace Genspil
 }
 
 
-    }
-}
-
 
 
