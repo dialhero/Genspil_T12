@@ -95,7 +95,7 @@ namespace Genspil
                     return customer;
                 }
             }
-            
+
             return null;
         }
 
@@ -116,6 +116,8 @@ namespace Genspil
             }
 
         }
+    }
+}
 
 
 
