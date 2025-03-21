@@ -39,5 +39,19 @@ namespace Genspil
                 index++;
             }
         }
+
+                  public static void printList<T>(List<T> list) //print requestlist
+        {
+            foreach (T item in list)
+
+            {
+                Console.WriteLine(item);
+
+            }
+
+        }
+
+
     }
 }
+
