@@ -80,5 +80,19 @@ namespace Genspil
                 Console.WriteLine($"Error loading file: {ex.Message}");
             }
         }
+
+        public static void SaveCustomersToFile()
+        {
+            using (StreamWriter writer = new StreamWriter("customers.csv"))
+            {
+                foreach (var customer in Customer.CustomerList)
+                {
+                    writer.WriteLine($"{customer.Name},{customer.Email},{customer.PhoneNumber}");
+                }
+            }
+            
+            Console.WriteLine("Kunder gemt til fil.");
+
+        }
     }
 }
