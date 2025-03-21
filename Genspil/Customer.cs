@@ -106,6 +106,19 @@ namespace Genspil
             }
         }
 
+        public static Customer GetCustomerByPhoneNumber(int phoneNumber)
+        {
+            foreach (var customer in CustomerList)
+            {
+                if (customer._phoneNumber == phoneNumber)
+                {
+                    return customer;
+                }
+            }
+            
+            return null;
+        }
+
     }
 }
 
