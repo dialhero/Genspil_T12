@@ -20,7 +20,7 @@ namespace Genspil
                 Console.WriteLine("3. Print filen ud");
                 Console.WriteLine("4. Tilføj kunde");
                 Console.WriteLine("5. Fjern kunde");
-                Console.WriteLine("6. Gem kundeliste til fil");
+                Console.WriteLine("6. TOM PLADS ");
                 Console.WriteLine("7. Opret forespørgsel på et spil");
 
 
@@ -107,7 +107,7 @@ namespace Genspil
                         break;
 
                     case "6":
-                        
+                        Console.WriteLine("Her kunne der være noget");
                         
                         break;
 

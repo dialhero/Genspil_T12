@@ -73,27 +73,7 @@ namespace Genspil
             {
                 Console.WriteLine($"Ingen kunde fundet med telefonnummer {phoneNumber}.");
             }
-        }
-
-        public static void LoadCustomersFromFile()
-        {
-            if (File.Exists("customers.csv"))
-            {
-                string[] lines = File.ReadAllLines("customers.csv");
-                foreach (string line in lines)
-                {
-                    string[] parts = line.Split(',');
-                    if (parts.Length == 3)
-                    {
-                        string name = parts[0];
-                        string email = parts[1];
-                        if (int.TryParse(parts[2], out int phoneNumber))
-                        {
-                            CustomerList.Add(new Customer(name, email, phoneNumber));
-                        }
-                    }
-                }
-            }
+            Files.SaveCustomersToFile();
         }
 
 
@@ -122,9 +102,6 @@ namespace Genspil
     }
 }
 
-
-    }
-}
 
 
 
