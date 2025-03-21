@@ -7,7 +7,7 @@ namespace Genspil
         
         static void Main(string[] args)
         {
-            Customer.LoadCustomersFromFile(); // Indlæs kunder fra fil ved programstart
+            Files.LoadCustomersFromFile(); // Indlæs kunder fra fil ved programstart
             Customer customerManager = new Customer();  // Instans af Customer til at tilføje kunder
             Files.LoadBoardgamesFromFile("boardgames.txt");
 
