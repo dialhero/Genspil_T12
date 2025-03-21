@@ -99,8 +99,24 @@ namespace Genspil
             return null;
         }
 
-    }
-}
+        public static string getContactDetails(List<Customer> customers, int phoneNumber)
+
+        {
+            Customer customer = customers.FirstOrDefault(c => c.PhoneNumber == phoneNumber);
+
+            if (customer != null)
+            {
+                return $"Navn: {customer.Name}, Email: {customer.Email}, Telefonnummer: {customer.PhoneNumber}";
+
+            }
+            else
+            {
+                return "Brugeren er ikke fundet.";
+
+            }
+
+        }
+
 
 
 
