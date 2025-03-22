@@ -7,8 +7,10 @@ using static Genspil.Boardgame;
 
 namespace Genspil
 {
-    internal class Files
+    class Files
     {
+        private const string BoardgameFilePath = "Data/mock_boardgames.txt";
+
         public static void SaveOneToFile(string filename, Boardgame boardgame)
         {
             // Åbn StreamWriter i append-tilstand (true betyder "tilføj til filen")
@@ -81,9 +83,38 @@ namespace Genspil
             }
         }
 
+
+        // Wrapper-metoder til boardgames med konstant sti
+        public static void SaveBoardgamesToFile()
+        {
+            SaveListToFile(BoardgameFilePath);
+        }
+
+        public static void SaveBoardgameToFile(Boardgame boardgame)
+        {
+            SaveOneToFile(BoardgameFilePath, boardgame);
+        }
+
+        public static void PrintBoardgamesFromFile()
+        {
+            PrintFromFile(BoardgameFilePath);
+        }
+
+        public static void LoadBoardgames()
+        {
+            LoadBoardgamesFromFile(BoardgameFilePath);
+        }
+
+
+
+
+        //Her starter metoderne til at gemme og hente kunder fra mockdata
+
+        private const string CustomerFilePath = "Data/mock_customers.csv";
+
         public static void SaveCustomersToFile()
         {
-            using (StreamWriter writer = new StreamWriter("customers.csv"))
+            using (StreamWriter writer = new StreamWriter(CustomerFilePath))
             {
                 foreach (var customer in Customer.CustomerList)
                 {
@@ -91,15 +122,15 @@ namespace Genspil
                 }
             }
             
-            Console.WriteLine("Kunder gemt til fil.");
+            Console.WriteLine($"Kunder gemt til fil: {CustomerFilePath}");
 
         }
 
         public static void LoadCustomersFromFile()
         {
-            if (File.Exists("customers.csv"))
+            if (File.Exists(CustomerFilePath))
             {
-                string[] lines = File.ReadAllLines("customers.csv");
+                string[] lines = File.ReadAllLines(CustomerFilePath);
                 foreach (string line in lines)
                 {
                     string[] parts = line.Split(',');
@@ -114,6 +145,11 @@ namespace Genspil
                     }
                 }
             }
+            else
+            {
+                Console.WriteLine($"Filen '{CustomerFilePath}' blev ikke fundet.");
+            }
         }
+
     }
 }
