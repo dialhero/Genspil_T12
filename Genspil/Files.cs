@@ -9,7 +9,7 @@ namespace Genspil
 {
     class Files
     {
-        private const string BoardgameFilePath = "Data/mock_boardgames.txt";
+        private static readonly string BoardgameFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\mock_boardgames.txt");
 
         public static void SaveOneToFile(string filename, Boardgame boardgame)
         {
@@ -93,6 +93,8 @@ namespace Genspil
         public static void SaveBoardgameToFile(Boardgame boardgame)
         {
             SaveOneToFile(BoardgameFilePath, boardgame);
+            Console.WriteLine("Gemmer boardgame til fil: " + Path.GetFullPath(BoardgameFilePath));
+
         }
 
         public static void PrintBoardgamesFromFile()
@@ -110,10 +112,12 @@ namespace Genspil
 
         //Her starter metoderne til at gemme og hente kunder fra mockdata
 
-        private const string CustomerFilePath = "Data/mock_customers.csv";
+        private static readonly string CustomerFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\mock_customers.csv");
+
 
         public static void SaveCustomersToFile()
         {
+            Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(CustomerFilePath)); // Debug
             using (StreamWriter writer = new StreamWriter(CustomerFilePath))
             {
                 foreach (var customer in Customer.CustomerList)
