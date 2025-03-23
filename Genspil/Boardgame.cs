@@ -80,6 +80,47 @@ namespace Genspil
             }
         }
 
+        public static void Search()
+        {
+            Console.WriteLine("Enter navn (Hold den blank hvis du vil skip): ");
+            string nameSearch = Console.ReadLine().ToLower();
+
+            Console.WriteLine("Enter edition (Hold den blank hvis du vil skip): ");
+            string editionSearch = Console.ReadLine().ToLower();
+
+            Console.WriteLine("Enter genre (Hold den blank hvis du vil skip): ");
+            string genreSearch = Console.ReadLine().ToLower();
+
+            Console.WriteLine("Enter spillere (Hold den blank hvis du vil skip): ");
+            string playerInput = Console.ReadLine();
+            int minPlayers = string.IsNullOrWhiteSpace(playerInput) ? 0 : int.Parse(playerInput);
+
+            Console.WriteLine("Enter stand (Hold den blank hvis du vil skip): ");
+            string conditionSearch = Console.ReadLine().ToLower();
+
+            var searchResults = Boardgames.Where(bg =>
+                (string.IsNullOrWhiteSpace(nameSearch) || bg.name.ToLower().Contains(nameSearch)) &&
+                (string.IsNullOrWhiteSpace(editionSearch) || bg.edition.ToLower().Contains(editionSearch)) &&
+                (string.IsNullOrWhiteSpace(genreSearch) || bg.genre.ToLower().Contains(genreSearch)) &&
+                (minPlayers == 0 || bg.playerAmount >= minPlayers) &&
+                (string.IsNullOrWhiteSpace(conditionSearch) || bg.gameCondition.ToString().ToLower().Contains(conditionSearch))
+            ).ToList();
+
+            if (searchResults.Count > 0)
+            {
+                Console.WriteLine("Search Results:");
+                int index = 1;
+                foreach (var boardgame in searchResults)
+                {
+                    Console.WriteLine($"{index}. Name: {boardgame.name}, Edition: {boardgame.edition}, Genre: {boardgame.genre}, Players: {boardgame.playerAmount}, Price: {boardgame.price}, Stand: {boardgame.gameCondition}, Antal: {boardgame.amount}");
+                    index++;
+                }
+            }
+            else
+            {
+                Console.WriteLine("No board games found matching your search criteria.");
+            }
+        }
 
 
     }

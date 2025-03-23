@@ -26,6 +26,7 @@ namespace Genspil
                 Console.WriteLine("5. Fjern kunde");
                 Console.WriteLine("6. TOM PLADS ");
                 Console.WriteLine("7. Opret forespørgsel på et spil");
+                Console.WriteLine("8. Search");
 
 
                 //Console.WriteLine("99. Vis kunder\n");
@@ -132,7 +133,7 @@ namespace Genspil
                         break;
 
                     case "8":
-                        //Request.PrintRequestList();
+                        Search();
                         break;
 
                      case "99":

@@ -104,6 +104,7 @@ namespace Genspil
         {
             Customer customer = customers.FirstOrDefault(c => c.PhoneNumber == phoneNumber);
 
+
             if (customer != null)
             {
                 return $"Navn: {customer.Name}, Email: {customer.Email}, Telefonnummer: {customer.PhoneNumber}";
@@ -118,6 +119,7 @@ namespace Genspil
         }
     }
 }
+
 
 
 
