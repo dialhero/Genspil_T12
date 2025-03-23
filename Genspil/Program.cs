@@ -7,9 +7,13 @@ namespace Genspil
         
         static void Main(string[] args)
         {
-            Files.LoadCustomersFromFile(); // Indlæs kunder fra fil ved programstart
+
+            Files.LoadCustomersFromFile();
+
             Customer customerManager = new Customer();  // Instans af Customer til at tilføje kunder
-            Files.LoadBoardgamesFromFile("boardgames.txt");
+
+            Files.LoadBoardgames();
+
 
 
             while (true)
@@ -66,6 +70,8 @@ namespace Genspil
                         Boardgame boardgame = new Boardgame(boardName, edition, genre, playerAmount, price, gameCondition, amount);
 
                         Boardgame.addGame(boardgame);
+                        Files.SaveBoardgameToFile(boardgame);
+
                         break;
                     
                     case "2":
@@ -73,7 +79,7 @@ namespace Genspil
                         break;
 
                     case "3":
-                        Files.PrintFromFile("boardgames.txt");
+                        Files.PrintBoardgamesFromFile();
                         break;
 
                     case "4":
@@ -91,6 +97,7 @@ namespace Genspil
                         }
 
                         customerManager.AddCustomer(name, email, phoneNumber);
+                        Files.SaveCustomersToFile();
 
                         break;
 

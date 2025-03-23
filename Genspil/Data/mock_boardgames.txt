@@ -1,0 +1,33 @@
+Sequence,Original,Familie,6,299,scratched,1
+Sequence,Original,Familie,6,0,broken,2
+Sequence,Junior,Familie,6,75,worn,1
+Sequence,Giant,Familie,6,175,perfect,0
+Sequence,Rejsespil,Familie,6,239,scratched,2
+Ticket to Ride,Berlin,Strategi,2,195,perfect,3
+Ticket to Ride,Berlin,Strategi,2,269,worn,1
+Ticket to Ride,Berlin,Strategi,2,158,broken,1
+Ticket to Ride,Europe Engelsk,Strategi,4,152,perfect,1
+Ticket to Ride,Europe,Strategi,4,195,perfect,2
+Ticket to Ride,First Journey,Strategi,4,236,perfect,0
+Ticket to Ride,Europe 1912,Strategi,4,195,worn,1
+Ticket to Ride,Ghost Train,Strategi,3,145,perfect,0
+Ticket to Ride,New York,Strategi,4,256,perfect,0
+Ticket to Ride,Japan & Italy,Strategi,4,195,worn,1
+Ticket to Ride,Northern Lights,Strategi,3,356,perfect,0
+7 Wonders,2nd edition,Strategi,7,299,perfect,0
+7 Wonders,Architects Dansk,Strategi,7,299,worn,2
+7 Wonders,Architects Dansk,Strategi,7,299,perfect,1
+7 Wonders,Architects Medals,Strategi,7,152,scratched,1
+7 Wonders,2nd edition Cities,Strategi,7,0,broken,1
+7 Wonders,Duel Dansk Agora,Strategi,2,89,worn,2
+7 Wonders,Duel Dansk Agora,Strategi,2,189,perfect,1
+7 Wonders,Duel Engelsk Agora,Strategi,2,0,broken,1
+Alverdens,Standard,Quiz,16,129,perfect,0
+Alverdens,Helte,Quiz,16,0,broken,1
+Alverdens,OMG,Quiz,16,129,perfect,1
+Alverdens,Popkultur,Quiz,16,99,scratched,3
+Alverdens,Popkultur,Quiz,16,99,scratched,1
+Alverdens,Arkitektur,Quiz,16,149,perfect,2
+Alverdens,Helte,Quiz,16,149,perfect,1
+A la carte: Dessert,Original,Familie,3,100,perfect,1
+Bad People,Original,Party,6,300,perfect,0
