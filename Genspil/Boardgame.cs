@@ -73,7 +73,10 @@ namespace Genspil
         public static void PrintListWares()
         {
             int index = 1;
-            foreach (var boardgame in Boardgames)
+
+            var sortedBoardgames = Boardgames.OrderBy(bg => bg.name).ToList();
+
+            foreach (var boardgame in sortedBoardgames)
             {
                 Console.WriteLine($"{index}. Name: {boardgame.name}, Edition: {boardgame.edition}, Genre: {boardgame.genre}, Players: {boardgame.playerAmount}, Price: {boardgame.price}, Stand: {boardgame.gameCondition}, Antal: {boardgame.amount}");
                 index++;
