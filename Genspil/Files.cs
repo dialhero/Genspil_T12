@@ -117,7 +117,7 @@ namespace Genspil
 
         public static void SaveCustomersToFile()
         {
-            Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(CustomerFilePath)); // Debug
+           // Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(CustomerFilePath)); // Debug
             using (StreamWriter writer = new StreamWriter(CustomerFilePath))
             {
                 foreach (var customer in Customer.CustomerList)
