@@ -13,7 +13,7 @@ namespace Genspil
         private int _amount;
         private Boardgame _boardGame;
         private Customer _customer;
-        private List<Request> requestList {  get; set; }
+        public static List<Request> requestList {  get; set; }
 
         public Request(int amount, Boardgame boardGame, Customer customer)
         {
@@ -24,6 +24,22 @@ namespace Genspil
             
         }
 
+        public int GetAmonut()
+        {
+            return _amount;
+        }
+        
+        public Boardgame GetBoardGame()
+        {
+            return _boardGame;
+        }
+        
+        public Customer GetCustomer()
+        {
+            return _customer;
+        }
+        
+        
         public void AddRequestToList()
         {
             requestList.Add(this);

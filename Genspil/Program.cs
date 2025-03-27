@@ -129,7 +129,8 @@ namespace Genspil
                         Console.WriteLine("Hvor mange spil forespørger kunden?");
                         int requestAmount = Convert.ToInt32(Console.ReadLine());
                         Request request = new Request(requestAmount, Boardgame.Boardgames[game], Customer.GetCustomerByPhoneNumber(telefonNr));
-                        request.AddRequestToList();
+                        //request.AddRequestToList();
+                        Files.SaveRequestToFile();
                         break;
 
                     case "8":

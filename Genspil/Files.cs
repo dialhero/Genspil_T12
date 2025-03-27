@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static Genspil.Boardgame;
@@ -117,7 +118,7 @@ namespace Genspil
 
         public static void SaveCustomersToFile()
         {
-           // Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(CustomerFilePath)); // Debug
+            // Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(CustomerFilePath)); // Debug
             using (StreamWriter writer = new StreamWriter(CustomerFilePath))
             {
                 foreach (var customer in Customer.CustomerList)
@@ -125,7 +126,7 @@ namespace Genspil
                     writer.WriteLine($"{customer.Name},{customer.Email},{customer.PhoneNumber}");
                 }
             }
-            
+
             Console.WriteLine($"Kunder gemt til fil: {CustomerFilePath}");
 
         }
@@ -155,5 +156,23 @@ namespace Genspil
             }
         }
 
+
+        private static readonly string RequestFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\mock_requests.csv");
+
+        public static void SaveRequestToFile()
+        {
+            // Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(CustomerFilePath)); // Debug
+            using (StreamWriter writer = new StreamWriter(RequestFilePath))
+            {
+                foreach (var request in Request.requestList)
+                {
+                    writer.WriteLine($"{request.GetAmonut},{request.GetBoardGame().name},{request.GetCustomer().PhoneNumber}");
+                }
+            }
+
+            Console.WriteLine($"Forespørgsel gemt til fil: {RequestFilePath}");
+        }
+
+        
     }
 }
