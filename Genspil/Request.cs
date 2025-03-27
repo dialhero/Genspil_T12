@@ -40,8 +40,12 @@ namespace Genspil
             return _customer;
         }
         
+        //public static void AddGameToRequest(Boardgame boardgame, Request request)
+        //{
+        //    request.boardgames.Add(boardgame);
+        //}
         
-        public void AddRequestToList(Request request, Customer customer)
+        public static void AddRequestToList(Request request, Customer customer)
         {
             customer.requestList.Add(request);
         }

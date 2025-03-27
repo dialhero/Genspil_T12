@@ -118,28 +118,26 @@ namespace Genspil
                         break;
 
                     case "6":
-                        Console.WriteLine("Her kunne der være noget");
-                        
+                        Search();
                         break;
 
                     case "7":
                         Console.WriteLine("Hvilket spil skal der oprettes en forespørgsel på?");
                         Console.WriteLine("Hvis spillet ikke er på listen nedenfor, skal du først oprette det!");
-                        //Boardgame.PrintListWares();
-                        int game = Convert.ToInt32(Console.ReadLine()) - 1;
+                        Search();
+                        int game = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Indtast kundens telefonnr.?");
-                        int telefonNr = Convert.ToInt32(Console.ReadLine());
+                        int customerPhoneNumber = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Hvor mange spil forespørger kunden?");
                         int requestAmount = Convert.ToInt32(Console.ReadLine());
-                        Request request = new Request(requestAmount, Customer.GetCustomerByPhoneNumber(telefonNr));
+                        Request request = new Request(requestAmount, Customer.GetCustomerByPhoneNumber(customerPhoneNumber));
                         
-                        //request.AddRequestToList();
+                        Request.AddRequestToList(request, Customer.GetCustomerByPhoneNumber(customerPhoneNumber));
                         Files.SaveRequestToFile();
                         break;
 
                     case "8":
-                        Search();
-                        break;
+                        //Request list print
 
                      case "99":
                      Customer.ShowCustomers();
