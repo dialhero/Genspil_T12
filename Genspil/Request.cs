@@ -13,12 +13,13 @@ namespace Genspil
         private int _amount;
         private Boardgame _boardGame;
         private Customer _customer;
-        public static List<Request> requestList {  get; set; }
+        public static List<Boardgame> boardgames = new List<Boardgame>();
 
-        public Request(int amount, Boardgame boardGame, Customer customer)
+        
+        public Request(int amount, Customer customer)
         {
             _amount = amount;
-            _boardGame = boardGame;
+            boardgames = new List<Boardgame>();
             _customer = customer;
 
             
@@ -40,9 +41,9 @@ namespace Genspil
         }
         
         
-        public void AddRequestToList()
+        public void AddRequestToList(Request request, Customer customer)
         {
-            requestList.Add(this);
+            customer.requestList.Add(request);
         }
 
         public static void PrintRequestList(List<Request> requestList)
@@ -51,23 +52,18 @@ namespace Genspil
             {
                 int index = 1;
                 Console.WriteLine($"{index}. Name: {request._customer.Name}, Phone number: {request._customer.PhoneNumber}");
-                Console.WriteLine($"  Game: {request._boardGame.name}, Edition: {request._boardGame.edition}, Genre: {request._boardGame.genre}, Players: {request._boardGame.playerAmount}, Price: {request._boardGame.price}, Stand: {request._boardGame.gameCondition}, Antal: {request._amount}");
+                Console.WriteLine($"  Game: {request._boardGame.Name}, Edition: {request._boardGame.Edition}, Genre: {request._boardGame.Genre}, Players: {request._boardGame.PlayerAmount}, Price: {request._boardGame.Price}, Stand: {request._boardGame.GameCondition}, Antal: {request._amount}");
                 index++;
             }
         }
 
-                  public static void printList<T>(List<T> list) //print requestlist
+        public static void printList<T>(List<T> list) //print requestlist
         {
             foreach (T item in list)
-
             {
                 Console.WriteLine(item);
-
             }
-
         }
-
-
     }
 }
 

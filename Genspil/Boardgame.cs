@@ -17,8 +17,7 @@ namespace Genspil
         private int _playerAmount;
         private double _price;
         private Condition _gameCondition;
-
-        public static List<Boardgame> Boardgames = new List<Boardgame>();
+        private Guid _id;
 
         public enum Condition
         {
@@ -38,47 +37,61 @@ namespace Genspil
             this._price = price;
             this._gameCondition = gameCondition;
             this._amount = amount;
-
+            this._id = Guid.NewGuid();
         }
-        public string name => _name;
-        public string edition => _edition;
-        public string genre => _genre;
-        public int amount => _amount;
-        public int playerAmount => _playerAmount;
-        public double price => _price;
-        public Condition gameCondition => _gameCondition;
 
-        public static void addGame(Boardgame newGame)
+        public int Amount
         {
-            var existingBoardgame = Boardgames.FirstOrDefault(bg => bg.name == newGame.name && bg.edition == newGame.edition && bg.gameCondition == newGame.gameCondition);
-
-            if (existingBoardgame != null)
-            {
-                // If found, increase the amount
-                existingBoardgame._amount += newGame.amount;
-                Console.WriteLine($"Antallet af {newGame.name} er opdateret til {existingBoardgame.amount}.");
-                Files.SaveListToFile("boardgames.txt");
-            }
-            else
-            {
-                // If not found, create a new boardgame
-                Boardgame newBoardgame = new Boardgame(newGame.name, newGame.edition, newGame.genre, newGame.playerAmount, newGame.price, newGame.gameCondition, newGame.amount);
-                Boardgames.Add(newBoardgame);
-                Files.SaveOneToFile("boardgames.txt", newBoardgame);
-                Console.WriteLine($"Ny {newGame.name} spil er tilføjet.");
-            }
-           
+            get => _amount;
+            set => _amount = value;
         }
+
+        public string Name
+        {
+            get => _name;
+            set => _name = value;
+        }
+
+        public string Edition
+        {
+            get => _edition;
+            set => _edition = value;
+        }
+
+        public string Genre
+        {
+            get => _genre;
+            set => _genre = value;
+        }
+
+        public int PlayerAmount
+        {
+            get => _playerAmount;
+            set => _playerAmount = value;
+        }
+
+        public double Price
+        {
+            get => _price;
+            set => _price = value;
+        }
+
+        public Condition GameCondition
+        {
+            get => _gameCondition;
+            set => _gameCondition = value;
+        }
+
 
         public static void PrintListWares()
         {
             int index = 1;
 
-            var sortedBoardgames = Boardgames.OrderBy(bg => bg.name).ToList();
+            var sortedBoardgames = Program.allBoardgames.OrderBy(bg => bg.Name).ToList();
 
             foreach (var boardgame in sortedBoardgames)
             {
-                Console.WriteLine($"{index}. Name: {boardgame.name}, Edition: {boardgame.edition}, Genre: {boardgame.genre}, Players: {boardgame.playerAmount}, Price: {boardgame.price}, Stand: {boardgame.gameCondition}, Antal: {boardgame.amount}");
+                Console.WriteLine($"{index}. Name: {boardgame.Name}, Edition: {boardgame.Edition}, Genre: {boardgame.Genre}, Players: {boardgame.PlayerAmount}, Price: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
                 index++;
             }
         }
@@ -101,12 +114,12 @@ namespace Genspil
             Console.WriteLine("Enter stand (Hold den blank hvis du vil skip): ");
             string conditionSearch = Console.ReadLine().ToLower();
 
-            var searchResults = Boardgames.Where(bg =>
-                (string.IsNullOrWhiteSpace(nameSearch) || bg.name.ToLower().Contains(nameSearch)) &&
-                (string.IsNullOrWhiteSpace(editionSearch) || bg.edition.ToLower().Contains(editionSearch)) &&
-                (string.IsNullOrWhiteSpace(genreSearch) || bg.genre.ToLower().Contains(genreSearch)) &&
-                (minPlayers == 0 || bg.playerAmount >= minPlayers) &&
-                (string.IsNullOrWhiteSpace(conditionSearch) || bg.gameCondition.ToString().ToLower().Contains(conditionSearch))
+            var searchResults = Program.allBoardgames.Where(bg =>
+                (string.IsNullOrWhiteSpace(nameSearch) || bg.Name.ToLower().Contains(nameSearch)) &&
+                (string.IsNullOrWhiteSpace(editionSearch) || bg.Edition.ToLower().Contains(editionSearch)) &&
+                (string.IsNullOrWhiteSpace(genreSearch) || bg.Genre.ToLower().Contains(genreSearch)) &&
+                (minPlayers == 0 || bg.PlayerAmount >= minPlayers) &&
+                (string.IsNullOrWhiteSpace(conditionSearch) || bg.GameCondition.ToString().ToLower().Contains(conditionSearch))
             ).ToList();
 
             if (searchResults.Count > 0)
@@ -115,7 +128,7 @@ namespace Genspil
                 int index = 1;
                 foreach (var boardgame in searchResults)
                 {
-                    Console.WriteLine($"{index}. Name: {boardgame.name}, Edition: {boardgame.edition}, Genre: {boardgame.genre}, Players: {boardgame.playerAmount}, Price: {boardgame.price}, Stand: {boardgame.gameCondition}, Antal: {boardgame.amount}");
+                    Console.WriteLine($"{index}. Name: {boardgame.Name}, Edition: {boardgame.Edition}, Genre: {boardgame.Genre}, Players: {boardgame.PlayerAmount}, Price: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
                     index++;
                 }
             }

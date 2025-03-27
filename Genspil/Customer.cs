@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace Genspil
+﻿namespace Genspil
 {
 
 
@@ -14,6 +7,7 @@ namespace Genspil
         private string _name;
         private string _email;
         private int _phoneNumber;
+        public List<Request> requestList = new List<Request>();
 
 
         public string Name
@@ -39,6 +33,7 @@ namespace Genspil
             _name = "ukendt";
             _email = "ukendt";
             _phoneNumber = 00000000;
+            requestList = new List<Request>();
         }
 
 
@@ -47,40 +42,15 @@ namespace Genspil
             _name = name ?? "ukendt";
             _email = email ?? "ukendt";
             _phoneNumber = phoneNumber > 0 ? phoneNumber : 00000000;
+            requestList = new List<Request>();
         }
 
-        public static List<Customer> CustomerList = new List<Customer>();
-
-        public void AddCustomer(string name, string email, int phoneNumber) //SaveCustomersToFile lagt ind i Files, og metoden kaldes efter AddNewCustomer
-        {
-            Customer newCustomer = new Customer(name, email, phoneNumber);
-            CustomerList.Add(newCustomer);
-            Files.SaveCustomersToFile();
-            Console.WriteLine($"\nKunde {newCustomer.Name} tilføjet!");
-
-        }
-
-
-        public void DeleteCustomer(int phoneNumber) //Vi fjerne kunde via telefonnummer. Vi tjekker også for om nummeret findes. 
-        {
-            Customer customerToRemove = CustomerList.Find(c => c.PhoneNumber == phoneNumber);
-            if (customerToRemove != null)
-            {
-                CustomerList.Remove(customerToRemove);
-                Console.WriteLine($"Kunde med telefonnummer {phoneNumber} er blevet fjernet.");
-            }
-            else
-            {
-                Console.WriteLine($"Ingen kunde fundet med telefonnummer {phoneNumber}.");
-            }
-            Files.SaveCustomersToFile();
-        }
 
 
         public static void ShowCustomers() //Til at teste add metoden og CSV filen
         {
             Console.WriteLine("\nListe over kunder:");
-            foreach (var customer in CustomerList)
+            foreach (var customer in Program.customerList)
             {
                 Console.WriteLine($"Navn: {customer.Name}, Email: {customer.Email}, Tlf: {customer.PhoneNumber}");
             }
@@ -88,7 +58,7 @@ namespace Genspil
 
         public static Customer GetCustomerByPhoneNumber(int phoneNumber)
         {
-            foreach (var customer in CustomerList)
+            foreach (var customer in Program.customerList)
             {
                 if (customer._phoneNumber == phoneNumber)
                 {

@@ -4,7 +4,10 @@ namespace Genspil
 {
     internal class Program
     {
-        
+        //Lister er placeret i de klasser som har ansvaret for dem
+        public static List<Customer> customerList = new List<Customer>();
+        public static List<Boardgame> allBoardgames = new List<Boardgame>();
+
         static void Main(string[] args)
         {
 
@@ -70,7 +73,7 @@ namespace Genspil
 
                         Boardgame boardgame = new Boardgame(boardName, edition, genre, playerAmount, price, gameCondition, amount);
 
-                        Boardgame.addGame(boardgame);
+                        AddGame(boardgame);
                         Files.SaveBoardgameToFile(boardgame);
 
                         break;
@@ -97,7 +100,7 @@ namespace Genspil
                             Console.WriteLine("Fejl! Indtast et gyldigt telefonnummer:");
                         }
 
-                        customerManager.AddCustomer(name, email, phoneNumber);
+                        AddCustomer(name, email, phoneNumber); 
                         Files.SaveCustomersToFile();
 
                         break;
@@ -111,7 +114,7 @@ namespace Genspil
                             Console.WriteLine("Fejl! Indtast et gyldigt telefonnummer:");
                         }
 
-                        customerManager.DeleteCustomer(deletePhoneNumber);
+                        DeleteCustomer(deletePhoneNumber);
                         break;
 
                     case "6":
@@ -122,13 +125,14 @@ namespace Genspil
                     case "7":
                         Console.WriteLine("Hvilket spil skal der oprettes en forespørgsel på?");
                         Console.WriteLine("Hvis spillet ikke er på listen nedenfor, skal du først oprette det!");
-                        Boardgame.PrintListWares();
+                        //Boardgame.PrintListWares();
                         int game = Convert.ToInt32(Console.ReadLine()) - 1;
                         Console.WriteLine("Indtast kundens telefonnr.?");
                         int telefonNr = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Hvor mange spil forespørger kunden?");
                         int requestAmount = Convert.ToInt32(Console.ReadLine());
-                        Request request = new Request(requestAmount, Boardgame.Boardgames[game], Customer.GetCustomerByPhoneNumber(telefonNr));
+                        Request request = new Request(requestAmount, Customer.GetCustomerByPhoneNumber(telefonNr));
+                        
                         //request.AddRequestToList();
                         Files.SaveRequestToFile();
                         break;
@@ -149,6 +153,58 @@ namespace Genspil
                 }
             }
         }
+
+        public static void AddGame(Boardgame newGame)
+        {
+            var existingBoardgame = allBoardgames.FirstOrDefault(bg => bg.Name == newGame.Name && bg.Edition == newGame.Edition && bg.GameCondition == newGame.GameCondition);
+
+            if (existingBoardgame != null)
+            {
+                // If found, increase the amount
+                existingBoardgame.Amount += newGame.Amount;
+                Console.WriteLine($"Antallet af {newGame.Name} er opdateret til {existingBoardgame.Amount}.");
+                Files.SaveListToFile("boardgames.txt");
+            }
+            else
+            {
+                // If not found, create a new boardgame
+                Boardgame newBoardgame = new Boardgame(newGame.Name, newGame.Edition, newGame.Genre, newGame.PlayerAmount, newGame.Price, newGame.GameCondition, newGame.Amount);
+                allBoardgames.Add(newBoardgame);
+                Files.SaveOneToFile("boardgames.txt", newBoardgame);
+                Console.WriteLine($"Ny {newGame.Name} spil er tilføjet.");
+            }
+
+        }
+
+
+        public static void AddCustomer(string name, string email, int phoneNumber) //SaveCustomersToFile lagt ind i Files, og metoden kaldes efter AddNewCustomer
+        {
+            Customer newCustomer = new Customer(name, email, phoneNumber);
+            customerList.Add(newCustomer);
+            Files.SaveCustomersToFile();
+            Console.WriteLine($"\nKunde {newCustomer.Name} tilføjet!");
+
+        }
+
+
+        public static void DeleteCustomer(int phoneNumber) //Vi fjerne kunde via telefonnummer. Vi tjekker også for om nummeret findes. 
+        {
+            Customer customerToRemove = customerList.Find(c => c.PhoneNumber == phoneNumber);
+            if (customerToRemove != null)
+            {
+                customerList.Remove(customerToRemove);
+                Console.WriteLine($"Kunde med telefonnummer {phoneNumber} er blevet fjernet.");
+            }
+            else
+            {
+                Console.WriteLine($"Ingen kunde fundet med telefonnummer {phoneNumber}.");
+            }
+            Files.SaveCustomersToFile();
+        }
+
+
+
+
     }
 }
 

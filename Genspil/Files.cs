@@ -18,7 +18,7 @@ namespace Genspil
             using (StreamWriter writer = new StreamWriter(filename, true)) // true betyder "append"
             {
 
-                writer.WriteLine($"{boardgame.name},{boardgame.edition},{boardgame.genre},{boardgame.playerAmount},{boardgame.price},{boardgame.gameCondition},{boardgame.amount}");
+                writer.WriteLine($"{boardgame.Name},{boardgame.Edition},{boardgame.Genre},{boardgame.PlayerAmount},{boardgame.Price},{boardgame.GameCondition},{boardgame.Amount}");
 
             }
         }
@@ -27,9 +27,9 @@ namespace Genspil
             // Åbn StreamWriter i append-tilstand (true betyder "tilføj til filen")
             using (StreamWriter writer = new StreamWriter(filename))
             {
-                foreach (var boardgame in Boardgame.Boardgames)
+                foreach (var boardgame in Program.allBoardgames)
                 {
-                    writer.WriteLine($"{boardgame.name},{boardgame.edition},{boardgame.genre},{boardgame.playerAmount},{boardgame.price},{boardgame.gameCondition},{boardgame.amount}");
+                    writer.WriteLine($"{boardgame.Name},{boardgame.Edition},{boardgame.Genre},{boardgame.PlayerAmount},{boardgame.Price},{boardgame.GameCondition},{boardgame.Amount}");
                 }
             }
         }
@@ -73,7 +73,7 @@ namespace Genspil
                         int amount = int.Parse(data[6]);
 
                         Boardgame boardgame = new Boardgame(name, edition, genre, playerAmount, price, gameCondition, amount);
-                        Boardgame.Boardgames.Add(boardgame);
+                        Program.allBoardgames.Add(boardgame);
 
                     }
                 }
@@ -121,7 +121,7 @@ namespace Genspil
             // Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(CustomerFilePath)); // Debug
             using (StreamWriter writer = new StreamWriter(CustomerFilePath))
             {
-                foreach (var customer in Customer.CustomerList)
+                foreach (var customer in Program.customerList)
                 {
                     writer.WriteLine($"{customer.Name},{customer.Email},{customer.PhoneNumber}");
                 }
@@ -145,7 +145,7 @@ namespace Genspil
                         string email = parts[1];
                         if (int.TryParse(parts[2], out int phoneNumber))
                         {
-                            Customer.CustomerList.Add(new Customer(name, email, phoneNumber));
+                            Program.customerList.Add(new Customer(name, email, phoneNumber));
                         }
                     }
                 }
@@ -161,12 +161,15 @@ namespace Genspil
 
         public static void SaveRequestToFile()
         {
-            // Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(CustomerFilePath)); // Debug
+            // Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(RequestFilePath)); // Debug
             using (StreamWriter writer = new StreamWriter(RequestFilePath))
             {
-                foreach (var request in Request.requestList)
-                {
-                    writer.WriteLine($"{request.GetAmonut},{request.GetBoardGame().name},{request.GetCustomer().PhoneNumber}");
+                foreach(var customer in Program.customerList) 
+                { 
+                    foreach (var request in customer.requestList)
+                    {
+                        writer.WriteLine($"{request.GetAmonut()},{request.GetBoardGame().Name},{request.GetCustomer().PhoneNumber}");
+                    }
                 }
             }
 

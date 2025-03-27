@@ -30,4 +30,5 @@ Alverdens,Popkultur,Quiz,16,99,scratched,1
 Alverdens,Arkitektur,Quiz,16,149,perfect,2
 Alverdens,Helte,Quiz,16,149,perfect,1
 A la carte: Dessert,Original,Familie,3,100,perfect,1
-Bad People,Original,Party,6,300,perfect,0Poker,Texas,Voksen,3,200,perfect,2
+Bad People,Original,Party,6,300,perfect,0
+Poker,Texas,Voksen,3,200,perfect,2
