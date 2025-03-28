@@ -95,20 +95,20 @@ namespace Genspil
 
         public static void Search()
         {
-            Console.WriteLine("Enter navn (Hold den blank hvis du vil skip): ");
+            Console.WriteLine("Indtast navn (Tryk enter hvis du vil springe over): ");
             string nameSearch = Console.ReadLine().ToLower();
 
-            Console.WriteLine("Enter edition (Hold den blank hvis du vil skip): ");
+            Console.WriteLine("Indtast edition (Tryk enter hvis du vil springe over): ");
             string editionSearch = Console.ReadLine().ToLower();
 
-            Console.WriteLine("Enter genre (Hold den blank hvis du vil skip): ");
+            Console.WriteLine("Indtast genre (Tryk enter hvis du vil springe over): ");
             string genreSearch = Console.ReadLine().ToLower();
 
-            Console.WriteLine("Enter spillere (Hold den blank hvis du vil skip): ");
+            Console.WriteLine("Indtast spillere (Tryk enter hvis du vil springe over): ");
             string playerInput = Console.ReadLine();
             int minPlayers = string.IsNullOrWhiteSpace(playerInput) ? 0 : int.Parse(playerInput);
 
-            Console.WriteLine("Enter stand (Hold den blank hvis du vil skip): ");
+            Console.WriteLine("Indtast stand (Tryk enter hvis du vil springe over): ");
             string conditionSearch = Console.ReadLine().ToLower();
 
             var searchResults = Program.allBoardgames.Where(bg =>
@@ -121,17 +121,17 @@ namespace Genspil
 
             if (searchResults.Count > 0)
             {
-                Console.WriteLine("Search Results:");
+                Console.WriteLine("Søgeresultater:");
                 int index = 1;
                 foreach (var boardgame in searchResults)
                 {
-                    Console.WriteLine($"{index}. Name: {boardgame.Name}, Edition: {boardgame.Edition}, Genre: {boardgame.Genre}, Players: {boardgame.PlayerAmount}, Price: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
+                    Console.WriteLine($"{index}. Navn: {boardgame.Name}, Udgave: {boardgame.Edition}, Genre: {boardgame.Genre}, Antal Spillere: {boardgame.PlayerAmount}, Pris: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
                     index++;
                 }
             }
             else
             {
-                Console.WriteLine("No board games found matching your search criteria.");
+                Console.WriteLine("Hov! Der var ikke noget, der passede på dine søgekriterier!");
             }
         }
 

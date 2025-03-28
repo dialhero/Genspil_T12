@@ -80,7 +80,7 @@ namespace Genspil
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error loading file: {ex.Message}");
+                Console.WriteLine($"Fejl ved loading: {ex.Message}");
             }
         }
 

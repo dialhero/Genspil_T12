@@ -21,15 +21,15 @@ namespace Genspil
 
             while (true)
             {
-                Console.WriteLine("\nSelect an option:");
-                Console.WriteLine("1. Tilføj et spil");
-                Console.WriteLine("2. Print listen af spil");
+                Console.WriteLine("\n----Menu----:");
+                Console.WriteLine("1. Tilføj et brætspil");
+                Console.WriteLine("2. Print listen af brætspil");
                 Console.WriteLine("3. Print filen ud");
                 Console.WriteLine("4. Tilføj kunde");
                 Console.WriteLine("5. Fjern kunde");
-                Console.WriteLine("6. TOM PLADS ");
-                Console.WriteLine("7. Opret forespørgsel på et spil");
-                Console.WriteLine("8. Search");
+                Console.WriteLine("6. Søg efter brætspil ");
+                Console.WriteLine("7. Opret forespørgsel på et brætspil");
+                Console.WriteLine("8. Print forespørgselsliste");
 
 
                 //Console.WriteLine("99. Vis kunder\n");
@@ -205,14 +205,3 @@ namespace Genspil
 
     }
 }
-
-
-/* Ideer til søgefunktionen - søgetermer adskilt af kommaer. 
- * 
- * Skal vi opdatere playerAmount? (min max)
- *  
- * PrintListWares, der skal printes til medarbejderne skal inkludere broken spil, men ikke requested spil. OBS på listen! 
- * 
- * Kan vi inkluderer filerne i vores Git?
- * 
- */
