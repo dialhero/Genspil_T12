@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -139,10 +140,18 @@ namespace Genspil
         {
             
             var sortedBoardgames = Program.allBoardgames.OrderBy(bg => bg.Name).ToList();
+
+
+            Console.WriteLine("+---------------------------------------------------------------------------------------------------------+");
+            Console.WriteLine("| {0,-5} | {1,-30} | {2,-20} | {3,-8} | {4,-8} | {5,-9} | {6,-5} |", "Index", "Navn", "Edition", "Players", "Pris", "Stand", "Antal");
+            Console.WriteLine("+---------------------------------------------------------------------------------------------------------+");
             foreach (var boardgame in sortedBoardgames)
             {
-               Console.WriteLine($"{Program.allBoardgames.IndexOf(boardgame)}. Name: {boardgame.Name}, Edition: {boardgame.Edition}, Genre: {boardgame.Genre}, Players: {boardgame.PlayerAmount}, Price: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
-            }
+                int x = Program.allBoardgames.IndexOf(boardgame);
+                Console.WriteLine("| {0,-5} | {1,-30} | {2,-20} | {3,-8} | {4,-8} | {5,-9} | {6,-5} |", Program.allBoardgames.IndexOf(boardgame), boardgame.Name, boardgame.Edition, boardgame.PlayerAmount, boardgame.Price, boardgame.GameCondition, boardgame.Amount);
+                Console.WriteLine("+---------------------------------------------------------------------------------------------------------+");
+                
+                          }
         }
 
     }
