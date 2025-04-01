@@ -131,12 +131,6 @@ namespace Genspil
 
                         case ConsoleKey.D3:
                             Console.Clear();
-                            Files.PrintBoardgamesFromFile();
-                            Console.ReadLine();
-                            break;
-
-                        case ConsoleKey.D4:
-                            Console.Clear();
                             Console.Write("\nIndtast kundens navn: ");
                             string name = Console.ReadLine();
 
@@ -159,7 +153,7 @@ namespace Genspil
 
                             break;
 
-                        case ConsoleKey.D5:
+                        case ConsoleKey.D4:
                             Console.Clear();
                             Console.WriteLine("\nIndtast telefonnummeret på kunden, der skal fjernes:");
 
@@ -172,12 +166,12 @@ namespace Genspil
                             DeleteCustomer(deletePhoneNumber);
                             break;
 
-                        case ConsoleKey.D6:
+                        case ConsoleKey.D5:
                             Console.Clear();
                             Search();
                             break;
 
-                        case ConsoleKey.D7:
+                        case ConsoleKey.D6:
                             Console.Clear();
                             Console.WriteLine("Hvilket spil skal der oprettes en forespørgsel på?");
                             Console.WriteLine("Hvis spillet ikke er på listen nedenfor, skal du først oprette det!");
@@ -193,13 +187,13 @@ namespace Genspil
                             Files.SaveRequestToFile();
                             break;
 
-                        case ConsoleKey.D8:
+                        case ConsoleKey.D7:
                             Console.Clear();
                             Console.WriteLine("Request list print");
                             Console.ReadLine();
                             break;
 
-                        case ConsoleKey.D9:
+                        case ConsoleKey.D8:
                             Console.Clear();
                             Console.WriteLine("Tak for i dag!");
                             Files.SaveCustomersToFile();
