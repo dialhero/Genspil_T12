@@ -131,26 +131,47 @@ namespace Genspil
 
         }
 
+        public static void SaveCustomerToFile(Customer customer)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(CustomerFilePath, append: true))
+                {
+                    writer.WriteLine($"{customer.Name},{customer.Email},{customer.PhoneNumber}");
+                }
+
+                Console.WriteLine("Ny kunde gemt til fil.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fejl under gemning af kunde: {ex.Message}");
+            }
+        
+        }
+
         public static void LoadCustomersFromFile()
         {
-            if (File.Exists(CustomerFilePath))
+            try
             {
-                string[] lines = File.ReadAllLines(CustomerFilePath);
-                foreach (string line in lines)
+                if (File.Exists(CustomerFilePath))
                 {
-                    string[] parts = line.Split(',');
-                    if (parts.Length == 3)
+                    string[] lines = File.ReadAllLines(CustomerFilePath);
+                    foreach (string line in lines)
                     {
-                        string name = parts[0];
-                        string email = parts[1];
-                        if (int.TryParse(parts[2], out int phoneNumber))
+                        string[] parts = line.Split(',');
+                        if (parts.Length == 3)
                         {
-                            Program.customerList.Add(new Customer(name, email, phoneNumber));
+                            string name = parts[0];
+                            string email = parts[1];
+                            if (int.TryParse(parts[2], out int phoneNumber))
+                            {
+                                Program.customerList.Add(new Customer(name, email, phoneNumber));
+                            }
                         }
                     }
                 }
             }
-            else
+            catch (IOException ex)
             {
                 Console.WriteLine($"Filen '{CustomerFilePath}' blev ikke fundet.");
             }
