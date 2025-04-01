@@ -68,6 +68,7 @@ namespace Genspil
         {
             get => _playerAmount;
             set => _playerAmount = value;
+
         }
 
         public double Price
@@ -83,7 +84,7 @@ namespace Genspil
         }
 
 
-        public static void PrintListWares()
+        public static void PrintListWaress()
         {
             var sortedBoardgames = Program.allBoardgames.OrderBy(bg => bg.Name).ToList();
 
@@ -134,7 +135,15 @@ namespace Genspil
                 Console.WriteLine("Hov! Der var ikke noget, der passede på dine søgekriterier!");
             }
         }
-
+        public static void PrintListWares()
+        {
+            
+            var sortedBoardgames = Program.allBoardgames.OrderBy(bg => bg.Name).ToList();
+            foreach (var boardgame in sortedBoardgames)
+            {
+               Console.WriteLine($"{Program.allBoardgames.IndexOf(boardgame)}. Name: {boardgame.Name}, Edition: {boardgame.Edition}, Genre: {boardgame.Genre}, Players: {boardgame.PlayerAmount}, Price: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
+            }
+        }
 
     }
 }

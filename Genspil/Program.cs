@@ -23,43 +23,72 @@ namespace Genspil
 
                 while (true)
                 {
-                    Console.WriteLine("\n----Menu----:");
-                    Console.WriteLine("1. Tilføj et brætspil");
-                    Console.WriteLine("2. Print listen af brætspil");
-                    Console.WriteLine("3. Print filen ud");
-                    Console.WriteLine("4. Tilføj kunde");
-                    Console.WriteLine("5. Fjern kunde");
-                    Console.WriteLine("6. Søg efter brætspil ");
-                    Console.WriteLine("7. Opret forespørgsel på et brætspil");
-                    Console.WriteLine("8. Print forespørgselsliste");
-                    Console.WriteLine("9. Afslut programmet");
+                    //Console.WriteLine("\n----Menu----:");
+                    //Console.WriteLine("1. Tilføj et brætspil");
+                    //Console.WriteLine("2. Print listen af brætspil");
+                    //Console.WriteLine("3. Print filen ud");
+                    //Console.WriteLine("4. Tilføj kunde");
+                    //Console.WriteLine("5. Fjern kunde");
+                    //Console.WriteLine("6. Søg efter brætspil ");
+                    //Console.WriteLine("7. Opret forespørgsel på et brætspil");
+                    //Console.WriteLine("8. Print forespørgselsliste");
+                    //Console.WriteLine("9. Afslut programmet");
 
-
+                    Console.Clear();
+                    systemWindow();
+                    
                     //Console.WriteLine("99. Vis kunder\n");
 
 
-                    string choice = Console.ReadLine();
 
-                    switch (choice)
+
+                    switch (Console.ReadKey().Key)
                     {
-                        case "1":
+                        case ConsoleKey.D1:
+                            Console.Clear();
+                            
                             //Boardgame.NewBoardgame();
-                            Console.WriteLine("Indtast spillets navn: ");
+                            Console.Write("Indtast spillets navn: ");
                             string boardName = Console.ReadLine();
 
-                            Console.WriteLine("Indtast spillets udgave: ");
+                            Console.Write("Indtast spillets udgave: ");
                             string edition = Console.ReadLine();
 
-                            Console.WriteLine("Indtast spillets genre: ");
+                            Console.Write("Indtast spillets genre: ");
                             string genre = Console.ReadLine();
 
-                            Console.WriteLine("Indtast spillets player amount: ");
-                            int playerAmount = Convert.ToInt32(Console.ReadLine());
+                            
+                            int playerAmount;
+                            while (true)
+                            {
+                                Console.Write("Indtast spillets player amount: ");
+                                try
+                                {
+                                    playerAmount = Convert.ToInt32(Console.ReadLine());
+                                    break;
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("Indtast et tal");
+                                }
+                            }
 
-                            Console.WriteLine("Indtast spillets pris: ");
-                            double price = Convert.ToDouble(Console.ReadLine());
+                            double price;
+                            while (true)
+                            {
+                                Console.Write("Indtast spillets pris: ");
+                                try
+                                {
+                                    price = Convert.ToInt32(Console.ReadLine());
+                                    break;
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("Indtast et tal");
+                                }
+                            }
 
-                            Console.WriteLine("Indtast spillets stand (0=broken, 1=bad, 2=worn, 3=scratched, 4=perfect): ");
+                            Console.Write("Indtast spillets stand (0=broken, 1=bad, 2=worn, 3=scratched, 4=perfect): ");
                             int gameConditionInt = Convert.ToInt32(Console.ReadLine());
 
                             // Tjek om værdien er en gyldig enum-værdi
@@ -70,8 +99,21 @@ namespace Genspil
                             }
                             Condition gameCondition = (Condition)gameConditionInt;
 
-                            Console.WriteLine("Hvor mange spil: ");
-                            int amount = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("Hvor mange spil: ");
+                            int amount;
+                            while (true)
+                            {
+                                Console.Write("Hvor mange spil: ");
+                                try
+                                {
+                                    amount = Convert.ToInt32(Console.ReadLine());
+                                    break;
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("Indtast et tal");
+                                }
+                            }
 
 
                             Boardgame boardgame = new Boardgame(boardName, edition, genre, playerAmount, price, gameCondition, amount);
@@ -81,15 +123,20 @@ namespace Genspil
 
                             break;
 
-                        case "2":
+                        case ConsoleKey.D2:
+                            Console.Clear();
                             Boardgame.PrintListWares();
+                            Console.ReadLine();
                             break;
 
-                        case "3":
+                        case ConsoleKey.D3:
+                            Console.Clear();
                             Files.PrintBoardgamesFromFile();
+                            Console.ReadLine();
                             break;
 
-                        case "4":
+                        case ConsoleKey.D4:
+                            Console.Clear();
                             Console.Write("\nIndtast kundens navn: ");
                             string name = Console.ReadLine();
 
@@ -112,7 +159,8 @@ namespace Genspil
 
                             break;
 
-                        case "5":
+                        case ConsoleKey.D5:
+                            Console.Clear();
                             Console.WriteLine("\nIndtast telefonnummeret på kunden, der skal fjernes:");
 
                             int deletePhoneNumber;
@@ -124,11 +172,13 @@ namespace Genspil
                             DeleteCustomer(deletePhoneNumber);
                             break;
 
-                        case "6":
+                        case ConsoleKey.D6:
+                            Console.Clear();
                             Search();
                             break;
 
-                        case "7":
+                        case ConsoleKey.D7:
+                            Console.Clear();
                             Console.WriteLine("Hvilket spil skal der oprettes en forespørgsel på?");
                             Console.WriteLine("Hvis spillet ikke er på listen nedenfor, skal du først oprette det!");
                             Search();
@@ -143,24 +193,18 @@ namespace Genspil
                             Files.SaveRequestToFile();
                             break;
 
-                        case "8":
+                        case ConsoleKey.D8:
+                            Console.Clear();
                             Console.WriteLine("Request list print");
                             Console.ReadLine();
                             break;
 
-                        case "9":
+                        case ConsoleKey.D9:
+                            Console.Clear();
                             Console.WriteLine("Tak for i dag!");
                             Files.SaveCustomersToFile();
-
-                            break;
-
-
-
-                        case "99":
-                            Customer.ShowCustomers();
-
-                            break;
-
+                            
+                            return;
 
                         default:
                             return;
@@ -224,7 +268,24 @@ namespace Genspil
         }
 
 
+        public static void systemWindow()
+        {
+            Console.WriteLine(@" 
+        | ---------------------------------------------------- |
+        |                                                      |
+        |       1. Tilføj et brætspil                          |
+        |       2. Print liste af spil                         |
+        |       3. Tilføj kunde                                |
+        |       4. Fjern kunde                                 |
+        |       5. Søg efter brætspil                          |
+        |       6. Opret forespørgsel på et brætspil           |
+        |       7. Print foresprøgselsliste                    |
+        |       8. Afslut program                              |
+        |                                                      |
+        | ---------------------------------------------------- |");
 
+        }
+        
 
     }
 }
