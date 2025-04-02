@@ -90,18 +90,18 @@ namespace Genspil
         {
             var sortedBoardgames = Program.allBoardgames.OrderBy(bg => bg.Name).ToList();
 
+            Console.WriteLine(
+
+          "Name".PadRight(28) +
+          "Edition".PadRight(23) +
+          "Genre".PadRight(15) +
+          "Players".PadRight(10) +
+          "Price".PadRight(10) +
+          "Stand".PadRight(10) +
+          "Antal".PadRight(10));
+
             foreach (var boardgame in sortedBoardgames)
             {
-                Console.WriteLine(
-
-           "Name".PadRight(28) +
-           "Edition".PadRight(23) +
-           "Genre".PadRight(15) +
-           "Players".PadRight(10) +
-           "Price".PadRight(10) +
-           "Stand".PadRight(10) +
-           "Antal".PadRight(10));
-
                 Console.WriteLine(
                     $"{Program.allBoardgames.IndexOf(boardgame)}.".PadRight(5) +
                     boardgame.Name.PadRight(23) +
