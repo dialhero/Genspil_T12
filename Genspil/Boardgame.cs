@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -91,7 +92,27 @@ namespace Genspil
 
             foreach (var boardgame in sortedBoardgames)
             {
-                Console.WriteLine($"{Program.allBoardgames.IndexOf(boardgame)}. Name: {boardgame.Name}, Edition: {boardgame.Edition}, Genre: {boardgame.Genre}, Players: {boardgame.PlayerAmount}, Price: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
+                Console.WriteLine(
+
+           "Name".PadRight(28) +
+           "Edition".PadRight(23) +
+           "Genre".PadRight(15) +
+           "Players".PadRight(10) +
+           "Price".PadRight(10) +
+           "Stand".PadRight(10) +
+           "Antal".PadRight(10));
+
+                Console.WriteLine(
+                    $"{Program.allBoardgames.IndexOf(boardgame)}.".PadRight(5) +
+                    boardgame.Name.PadRight(23) +
+                    boardgame.Edition.PadRight(23) +
+                    boardgame.Genre.PadRight(15) +
+                    boardgame.PlayerAmount.ToString().PadRight(10) +
+                    boardgame.Price.ToString().PadRight(10) +
+                    boardgame.GameCondition.ToString().PadRight(10) +
+                    boardgame.Amount.ToString().PadRight(10));
+
+
             }
         }
 
