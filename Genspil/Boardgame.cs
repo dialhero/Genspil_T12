@@ -156,7 +156,7 @@ namespace Genspil
                 Console.WriteLine("Hov! Der var ikke noget, der passede på dine søgekriterier!");
             }
         }
-       
+
         public static void UpdateAmountByIndex(int index, int newAmount)
         {
             if (index >= 0 && index < Program.allBoardgames.Count)
@@ -166,10 +166,45 @@ namespace Genspil
                 Console.ReadLine();
             }
             else
-            { 
-                Console.WriteLine("Ugyldigt index"); 
+            {
+                Console.WriteLine("Ugyldigt index");
             }
         }
 
+        public static void WarehouseListSorted()
+        {
+            Console.WriteLine("skal den sortere efter. 1) navn eller 2) Genre?");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine($@"
+| {"Index",-5}   | {"Navn",-30} | {"Udgave",-20} |{"Genre",-10}| {"Spillere",-8} | {"Pris",-8} | {"Stand",-9} | {"Antal",-5} |");
+            Console.Write($@"
+|-----------------------------------------------------------------------------------------------------------------------|");
+            if (choice == 1)
+            {
+                var sortedBoardgames = Program.allBoardgames.OrderBy(bg => bg.Name).ToList();
+                foreach (var boardgame in sortedBoardgames)
+                {
+                    if (boardgame.Amount >0)
+                    Console.Write($@"
+| {Program.allBoardgames.IndexOf(boardgame),-5}   | {boardgame.Name,-30} | {boardgame.Edition,-20} |{boardgame.Genre,-10} | {boardgame.PlayerAmount,-8} | {boardgame.Price,-8} | {boardgame.GameCondition,-9} | {boardgame.Amount,-5} |
+|-----------------------------------------------------------------------------------------------------------------------|");
+
+                }
+            }
+            if (choice == 2)
+            {
+                var sortedBoardgames = Program.allBoardgames.OrderBy(bg => bg.Genre).ToList();
+                foreach (var boardgame in sortedBoardgames)
+                {
+                    if (boardgame.Amount > 0)
+                        Console.Write($@"
+| {Program.allBoardgames.IndexOf(boardgame),-5}   | {boardgame.Name,-30} | {boardgame.Edition,-20} |{boardgame.Genre,-10} | {boardgame.PlayerAmount,-8} | {boardgame.Price,-8} | {boardgame.GameCondition,-9} | {boardgame.Amount,-5} |
+|-----------------------------------------------------------------------------------------------------------------------|");
+
+                }
+            }
+
+        }
     }
 }

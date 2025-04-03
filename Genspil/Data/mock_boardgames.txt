@@ -15,7 +15,7 @@ Ticket to Ride,New York,Strategi,4,256,perfect,0
 Ticket to Ride,Japan & Italy,Strategi,4,195,worn,1
 Ticket to Ride,Northern Lights,Strategi,3,356,perfect,0
 7 Wonders,2nd edition,Strategi,7,299,perfect,0
-7 Wonders,Architects Dansk,Strategi,7,299,worn,2
+7 Wonders,Architects Dansk,Strategi,7,299,worn,1
 7 Wonders,Architects Dansk,Strategi,7,299,perfect,1
 7 Wonders,Architects Medals,Strategi,7,152,scratched,1
 7 Wonders,2nd edition Cities,Strategi,7,0,broken,1

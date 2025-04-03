@@ -233,6 +233,11 @@ namespace Genspil
                             
                             return;
 
+                        case ConsoleKey.D0:
+                            Boardgame.WarehouseListSorted();
+                            Console.ReadLine();
+                            break;
+
                         default:
                             return;
 
@@ -309,7 +314,7 @@ namespace Genspil
         |       7. Print foresprøgselsliste                    |
         |       8. Opdater antal brætspil                      |
         |       9. Afslut program                              |
-        |                                                      |
+        |       0. Lageroptælling                              |
         | ---------------------------------------------------- |");
 
         }
