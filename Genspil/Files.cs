@@ -197,6 +197,21 @@ namespace Genspil
             Console.WriteLine($"Forespørgsel gemt til fil: {RequestFilePath}");
         }
 
-        
+        //public List<Request> LoadRequestsFromFile()
+        //{
+        //    List<Request> requests = new List<Request>();
+
+        //    using (StreamReader reader = new StreamReader(RequestFilePath))
+        //    {
+        //        string line;
+        //        while ((line = reader.ReadLine()) != null)
+        //        {
+        //            if (!string.IsNullOrEmpty(line))
+        //            {
+        //                requests.Add(Request)
+        //            }
+        //    }
+        //    return null;
+        //}
     }
 }
