@@ -158,20 +158,38 @@ namespace Genspil
                 Console.WriteLine("Hov! Der var ikke noget, der passede på dine søgekriterier!");
             }
         }
-       
-        public static void UpdateAmountByIndex(int index, int newAmount)
+
+        public static void UpdateAmountByIndex(int index, int change)
         {
             if (index >= 0 && index < Program.allBoardgames.Count)
             {
-                Program.allBoardgames[index].Amount = newAmount;
-                Console.WriteLine($"Antallet af '{Program.allBoardgames[index].Name}' er nu opdateret.");
-                Console.ReadLine();
+                Boardgame selectedGame = Program.allBoardgames[index];
+                int newAmount = selectedGame.Amount + change;
+
+                if (newAmount < 0)
+                {
+                    Console.WriteLine($"Fejl - du kan ikke have færre end 0 af '{selectedGame.Name}' på lager.");
+                }
+                else
+                {
+                    selectedGame.SetAmount(newAmount);
+                    Console.WriteLine($"Antallet af '{selectedGame.Name}' er nu opdateret til {selectedGame.Amount} stk.");
+                }
             }
             else
-            { 
-                Console.WriteLine("Ugyldigt index"); 
+            {
+
+                Console.WriteLine("Ugyldigt index");
             }
+
+            Console.ReadLine();
         }
 
-    }
+        
+
+    public void SetAmount(int newAmount)
+        {
+            _amount = newAmount;
+        }
+    } 
 }

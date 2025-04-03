@@ -211,6 +211,7 @@ namespace Genspil
                         case ConsoleKey.NumPad8:
                             
                             Console.Clear();
+                            Console.WriteLine("---Opdater antal brætspil---");
                             Console.Write("Indtast index nr. på det brætspil, som du vil ændre antal på: ");
                             int index = Convert.ToInt32(Console.ReadLine());
 
@@ -279,7 +280,7 @@ namespace Genspil
         }
 
 
-        public static void DeleteCustomer(int phoneNumber) //Vi fjerne kunde via telefonnummer. Vi tjekker også for om nummeret findes. 
+        public static void DeleteCustomer(int phoneNumber) //Vi fjerner kunde via telefonnummer. Vi tjekker også for om nummeret findes. 
         {
             Customer customerToRemove = customerList.Find(c => c.PhoneNumber == phoneNumber);
             if (customerToRemove != null)
