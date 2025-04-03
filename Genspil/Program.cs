@@ -221,6 +221,7 @@ namespace Genspil
                             break;
 
                         case ConsoleKey.D0:
+                            Console.Clear();
                             Boardgame.WarehouseListSorted();
                             Console.ReadLine();
                             break;

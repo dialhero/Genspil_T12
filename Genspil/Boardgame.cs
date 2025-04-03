@@ -147,7 +147,7 @@ namespace Genspil
                 Console.WriteLine("Søgeresultater:");
                 foreach (var boardgame in searchResults)
                 {
-                    Console.WriteLine($"{Program.allBoardgames.IndexOf(boardgame)}. Navn: {boardgame.Name}, Udgave: {boardgame.Edition}, Genre: {boardgame.Genre}, Antal Spillere: {boardgame.PlayerAmount}, Pris: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");                   
+                    Console.WriteLine($"{Program.allBoardgames.IndexOf(boardgame)}. Navn: {boardgame.Name}, Udgave: {boardgame.Edition}, Genre: {boardgame.Genre}, Antal Spillere: {boardgame.PlayerAmount}, Pris: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
                 }
             }
             else
@@ -180,14 +180,51 @@ namespace Genspil
                 Console.WriteLine("Ugyldigt index");
             }
             Files.SaveBoardgamesToFile();
-            
+
         }
 
-        
 
-    public void SetAmount(int newAmount)
+
+        public void SetAmount(int newAmount)
         {
             _amount = newAmount;
         }
-    } 
+
+
+        public static void WarehouseListSorted()
+        {
+            Console.WriteLine("skal den sortere efter. 1) navn eller 2) Genre?");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine($@"
+| {"Index",-5}   | {"Navn",-30} | {"Udgave",-20} |{"Genre",-10}| {"Spillere",-8} | {"Pris",-8} | {"Stand",-9} | {"Antal",-5} |");
+            Console.Write($@"
+|-----------------------------------------------------------------------------------------------------------------------|");
+            if (choice == 1)
+            {
+                var sortedBoardgames = Program.allBoardgames.OrderBy(bg => bg.Name).ToList();
+                foreach (var boardgame in sortedBoardgames)
+                {
+                    if (boardgame.Amount > 0)
+                        Console.Write($@"
+| {Program.allBoardgames.IndexOf(boardgame),-5}   | {boardgame.Name,-30} | {boardgame.Edition,-20} |{boardgame.Genre,-10} | {boardgame.PlayerAmount,-8} | {boardgame.Price,-8} | {boardgame.GameCondition,-9} | {boardgame.Amount,-5} |
+|-----------------------------------------------------------------------------------------------------------------------|");
+
+                }
+            }
+            if (choice == 2)
+            {
+                var sortedBoardgames = Program.allBoardgames.OrderBy(bg => bg.Genre).ToList();
+                foreach (var boardgame in sortedBoardgames)
+                {
+                    if (boardgame.Amount > 0)
+                        Console.Write($@"
+| {Program.allBoardgames.IndexOf(boardgame),-5}   | {boardgame.Name,-30} | {boardgame.Edition,-20} |{boardgame.Genre,-10} | {boardgame.PlayerAmount,-8} | {boardgame.Price,-8} | {boardgame.GameCondition,-9} | {boardgame.Amount,-5} |
+|-----------------------------------------------------------------------------------------------------------------------|");
+
+                }
+            }
+
+        }
+    }
 }
