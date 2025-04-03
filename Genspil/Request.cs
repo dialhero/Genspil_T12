@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Genspil
 {
@@ -25,6 +26,11 @@ namespace Genspil
             
         }
 
+        public override string ToString()
+        {
+            return $"{_amount},{boardgames[0].Name},{_customer.PhoneNumber}";
+        }
+
         public int GetAmonut()
         {
             return _amount;
@@ -39,12 +45,15 @@ namespace Genspil
         {
             return _customer;
         }
-        
-        //public static void AddGameToRequest(Boardgame boardgame, Request request)
-        //{
-        //    request.boardgames.Add(boardgame);
-        //}
-        
+
+        public void AddBoardgame(Boardgame game)
+        {
+            if (game != null)
+            {
+                boardgames.Add(game);
+            }
+        }
+
         public static void AddRequestToList(Request request, Customer customer)
         {
             customer.requestList.Add(request);

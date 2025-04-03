@@ -23,25 +23,9 @@ namespace Genspil
 
                 while (true)
                 {
-                    //Console.WriteLine("\n----Menu----:");
-                    //Console.WriteLine("1. Tilføj et brætspil");
-                    //Console.WriteLine("2. Print listen af brætspil");
-                    //Console.WriteLine("3. Print filen ud");
-                    //Console.WriteLine("4. Tilføj kunde");
-                    //Console.WriteLine("5. Fjern kunde");
-                    //Console.WriteLine("6. Søg efter brætspil ");
-                    //Console.WriteLine("7. Opret forespørgsel på et brætspil");
-                    //Console.WriteLine("8. Print forespørgselsliste");
-                    //Console.WriteLine("9. Afslut programmet");
-
                     Console.Clear();
                     systemWindow();
                     
-                    //Console.WriteLine("99. Vis kunder\n");
-
-
-
-
                     switch (Console.ReadKey().Key)
                     {
                         case ConsoleKey.D1:
@@ -179,6 +163,7 @@ namespace Genspil
 
                             Console.Clear();
                             Search();
+                            Console.ReadLine();
                             break;
 
                         case ConsoleKey.D6:
@@ -189,7 +174,7 @@ namespace Genspil
                             Console.WriteLine("Hvis spillet ikke er på listen nedenfor, skal du først oprette det!");
                             Search();
                             int game = Convert.ToInt32(Console.ReadLine());
-                            Console.WriteLine("Indtast kundens telefonnr.?");
+                            Console.WriteLine("Indtast kundens telefonnr.");
                             int customerPhoneNumber = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine("Hvor mange spil forespørger kunden?");
                             int requestAmount = Convert.ToInt32(Console.ReadLine());
