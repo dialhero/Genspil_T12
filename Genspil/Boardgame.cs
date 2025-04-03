@@ -145,11 +145,9 @@ namespace Genspil
             if (searchResults.Count > 0)
             {
                 Console.WriteLine("Søgeresultater:");
-                int index = 1;
                 foreach (var boardgame in searchResults)
                 {
-                    Console.WriteLine($"{index}. Navn: {boardgame.Name}, Udgave: {boardgame.Edition}, Genre: {boardgame.Genre}, Antal Spillere: {boardgame.PlayerAmount}, Pris: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
-                    index++;
+                    Console.WriteLine($"{Program.allBoardgames.IndexOf(boardgame)}. Navn: {boardgame.Name}, Udgave: {boardgame.Edition}, Genre: {boardgame.Genre}, Antal Spillere: {boardgame.PlayerAmount}, Pris: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
                     Console.ReadLine();
                 }
             }
