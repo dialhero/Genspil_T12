@@ -212,7 +212,7 @@ namespace Genspil
 
                             Console.Clear();
                             Console.WriteLine("Tak for i dag!");
-                            Files.SaveCustomersToFile();
+                            //Files.SaveCustomersToFile();
                             
                             return;
 
