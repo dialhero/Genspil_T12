@@ -200,13 +200,14 @@ namespace Genspil
                             Console.Write("Indtast index nr. på det brætspil, som du vil ændre antal på: ");
                             int index = Convert.ToInt32(Console.ReadLine());
 
-                            Console.Write("Indtast nyt antal: ");
+                            Console.Write("Indtast ændring i antal: ");
                             int updatedAmount = Convert.ToInt32(Console.ReadLine());
 
                             Boardgame.UpdateAmountByIndex(index, updatedAmount);
+
                             Files.SaveBoardgamesToFile();
 
-                            return;
+                            break;
                         
                         
                         
@@ -217,7 +218,7 @@ namespace Genspil
                             Console.WriteLine("Tak for i dag!");
                             //Files.SaveCustomersToFile();
                             
-                            return;
+                            break;
 
                         default:
                             return;

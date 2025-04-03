@@ -171,6 +171,7 @@ namespace Genspil
                 {
                     selectedGame.SetAmount(newAmount);
                     Console.WriteLine($"Antallet af '{selectedGame.Name}' er nu opdateret til {selectedGame.Amount} stk.");
+                    Console.ReadLine();
                 }
             }
             else
@@ -178,8 +179,8 @@ namespace Genspil
 
                 Console.WriteLine("Ugyldigt index");
             }
-
-            Console.ReadLine();
+            Files.SaveBoardgamesToFile();
+            
         }
 
         
