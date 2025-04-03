@@ -207,8 +207,25 @@ namespace Genspil
                             Console.ReadLine();
                             break;
 
-                        case ConsoleKey.D8:
+                        case ConsoleKey.D8: 
                         case ConsoleKey.NumPad8:
+                            
+                            Console.Clear();
+                            Console.Write("Indtast index nr. på det brætspil, som du vil ændre antal på: ");
+                            int index = Convert.ToInt32(Console.ReadLine());
+
+                            Console.Write("Indtast nyt antal: ");
+                            int updatedAmount = Convert.ToInt32(Console.ReadLine());
+
+                            Boardgame.UpdateAmountByIndex(index, updatedAmount);
+                            Files.SaveBoardgamesToFile();
+
+                            return;
+                        
+                        
+                        
+                        case ConsoleKey.D9:
+                        case ConsoleKey.NumPad9:
 
                             Console.Clear();
                             Console.WriteLine("Tak for i dag!");
@@ -290,7 +307,8 @@ namespace Genspil
         |       5. Søg efter brætspil                          |
         |       6. Opret forespørgsel på et brætspil           |
         |       7. Print foresprøgselsliste                    |
-        |       8. Afslut program                              |
+        |       8. Opdater antal brætspil                      |
+        |       9. Afslut program                              |
         |                                                      |
         | ---------------------------------------------------- |");
 

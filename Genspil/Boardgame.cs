@@ -150,6 +150,7 @@ namespace Genspil
                 {
                     Console.WriteLine($"{index}. Navn: {boardgame.Name}, Udgave: {boardgame.Edition}, Genre: {boardgame.Genre}, Antal Spillere: {boardgame.PlayerAmount}, Pris: {boardgame.Price}, Stand: {boardgame.GameCondition}, Antal: {boardgame.Amount}");
                     index++;
+                    Console.ReadLine();
                 }
             }
             else
@@ -158,7 +159,19 @@ namespace Genspil
             }
         }
        
-        
+        public static void UpdateAmountByIndex(int index, int newAmount)
+        {
+            if (index >= 0 && index < Program.allBoardgames.Count)
+            {
+                Program.allBoardgames[index].Amount = newAmount;
+                Console.WriteLine($"Antallet af '{Program.allBoardgames[index].Name}' er nu opdateret.");
+                Console.ReadLine();
+            }
+            else
+            { 
+                Console.WriteLine("Ugyldigt index"); 
+            }
+        }
 
     }
 }
