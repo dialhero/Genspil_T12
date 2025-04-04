@@ -146,7 +146,7 @@ namespace Genspil
             {
                 Console.WriteLine($"Fejl under gemning af kunde: {ex.Message}");
             }
-        
+
         }
 
         public static void LoadCustomersFromFile()
@@ -180,21 +180,26 @@ namespace Genspil
 
         private static readonly string RequestFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\mock_requests.csv");
 
-        public static void SaveRequestToFile()
+        public static void SaveCustomersToFile(List<Customer> customers)
         {
-            // Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(RequestFilePath)); // Debug
             using (StreamWriter writer = new StreamWriter(RequestFilePath))
             {
-                foreach(var customer in Program.customerList) 
-                { 
-                    foreach (var request in customer.requestList)
-                    {
-                        writer.WriteLine($"{request.GetAmonut()},{request.GetBoardGame().Name},{request.GetCustomer().PhoneNumber}");
+                foreach (Customer customer in customers)
+                {
+                    writer.WriteLine($"Customer: {customer.Name}, {customer.PhoneNumber}");
+
+                    foreach (Request request in customer.requestList)
+{
+                        foreach (Boardgame game in request.Boardgames)
+                        {
+                            writer.WriteLine($"Boardgame: {game.Name}, {game.Edition}, {game.Genre}, " +
+                                             $"{game.PlayerAmount} players, {game.Price} DKK, Condition: {game.GameCondition}");
+                        }
                     }
+
+                    writer.WriteLine(); // tom linje mellem kunder
                 }
             }
-
-            Console.WriteLine($"Forespørgsel gemt til fil: {RequestFilePath}");
         }
 
         //public List<Request> LoadRequestsFromFile()
@@ -212,6 +217,29 @@ namespace Genspil
         //            }
         //    }
         //    return null;
-        //}
+        //   
+
+
+        public static void SaveCustomersToFile(List<Customer> customers, string filepath)
+        {
+            using (StreamWriter writer = new StreamWriter(filepath, true))
+            {
+                foreach (Customer customer in customers)
+                {
+                    writer.WriteLine($"Customer: {customer.Name}, {customer.PhoneNumber}");
+
+                    foreach (Request request in customer.requestList)
+                    {
+                        foreach (Boardgame game in Request.boardgames) // eller request.boardgames hvis det ikke er static
+                        {
+                            writer.WriteLine($"Boardgame: {game.Name}, {game.Edition}, {game.Genre}, " +
+                                             $"{game.PlayerAmount} players, {game.Price} DKK, Condition: {game.GameCondition}");
+                        }
+                    }
+
+                    writer.WriteLine(); // tom linje mellem kunder
+                }
+            }
+        }
     }
 }

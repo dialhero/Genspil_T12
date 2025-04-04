@@ -173,7 +173,10 @@ namespace Genspil
                             Console.WriteLine("Hvilket spil skal der oprettes en forespørgsel på?");
                             Console.WriteLine("Hvis spillet ikke er på listen nedenfor, skal du først oprette det!");
                             Search();
-                            int game = Convert.ToInt32(Console.ReadLine());
+                            int gameIndex = Convert.ToInt32(Console.ReadLine());
+
+                            Boardgame selectedGame = allBoardgames[gameIndex];
+
                             Console.WriteLine("Indtast kundens telefonnr.");
                             int customerPhoneNumber = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine("Hvor mange spil forespørger kunden?");
@@ -181,7 +184,8 @@ namespace Genspil
                             Request request = new Request(requestAmount, Customer.GetCustomerByPhoneNumber(customerPhoneNumber));
 
                             Request.AddRequestToList(request, Customer.GetCustomerByPhoneNumber(customerPhoneNumber));
-                            Files.SaveRequestToFile();
+                            request.AddBoardgame(selectedGame);
+                            Files.SaveCustomersToFile(customerList);
                             break;
 
                         case ConsoleKey.D7:

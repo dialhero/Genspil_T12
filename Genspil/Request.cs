@@ -15,21 +15,31 @@ namespace Genspil
         private Boardgame _boardGame;
         private Customer _customer;
         public static List<Boardgame> boardgames = new List<Boardgame>();
+        private List<Boardgame> _boardgames;
 
-        
+
         public Request(int amount, Customer customer)
         {
             _amount = amount;
-            boardgames = new List<Boardgame>();
             _customer = customer;
+            _boardgames = new List<Boardgame>();
 
-            
+
+        }
+        public List<Boardgame> Boardgames => _boardgames;
+        public void AddBoardgame(Boardgame game)
+        {
+            _boardgames.Add(game);
         }
 
         public override string ToString()
         {
-            return $"{_amount},{boardgames[0].Name},{_customer.PhoneNumber}";
+            return $"{_amount},{_boardgames[0].Name},{_customer.PhoneNumber}";
         }
+        //public override string ToString()
+        //{
+        //    return $"{_amount},{boardgames[0].Name},{_customer.PhoneNumber}";
+        //}
 
         public int GetAmonut()
         {
@@ -46,13 +56,13 @@ namespace Genspil
             return _customer;
         }
 
-        public void AddBoardgame(Boardgame game)
-        {
-            if (game != null)
-            {
-                boardgames.Add(game);
-            }
-        }
+        //public void AddBoardgame(Boardgame game)
+        //{
+        //    if (game != null)
+        //    {
+        //        boardgames.Add(game);
+        //    }
+        //}
 
         public static void AddRequestToList(Request request, Customer customer)
         {
