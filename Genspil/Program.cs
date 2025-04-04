@@ -222,7 +222,7 @@ namespace Genspil
                             Console.WriteLine("Tak for i dag!");
                             //Files.SaveCustomersToFile();
                             
-                            break;
+                            return;
 
                         case ConsoleKey.D0:
                             Console.Clear();
@@ -231,7 +231,9 @@ namespace Genspil
                             break;
 
                         default:
-                            return;
+                            
+
+                            break;
 
                     }
                 }
