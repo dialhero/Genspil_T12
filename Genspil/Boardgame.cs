@@ -226,5 +226,36 @@ namespace Genspil
             }
 
         }
+
+        public static Boardgame ParseBoardgameFromString(string gameData)
+        {
+            string[] parts = gameData.Split(',');
+
+            if (parts.Length < 6)
+            {
+                throw new FormatException("Invalid boardgame data format.");
+            }
+
+            string name = parts[0].Trim();
+            string edition = parts[1].Trim();
+            string genre = parts[2].Trim();
+            string playerInfo = parts[3].Trim();
+            string priceInfo = parts[4].Trim();
+            string conditionInfo = parts[5].Trim();
+
+            // Parse playerAmount (spillere)
+            int playerAmount = int.Parse(playerInfo.Split(' ')[0]);
+
+            // Parse price (pris)
+            double price = double.Parse(priceInfo.Split(' ')[0]);
+
+            // Parse game condition (tilstand)
+            Condition gameCondition = (Condition)Enum.Parse(typeof(Condition), conditionInfo.Split(':')[1].Trim());
+
+            // Opret et Boardgame objekt
+            Boardgame boardgame = new Boardgame(name, edition, genre, playerAmount, price, gameCondition, 0); // Sætter Amount til 0 (kan justeres senere)
+
+            return boardgame;
+        }
     }
 }

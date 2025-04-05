@@ -87,6 +87,30 @@
             }
 
         }
+        public static Customer ParseCustomerData(string customerData)
+        {
+            string[] parts = customerData.Split(',');
+
+            if (parts.Length < 2)
+            {
+                throw new FormatException("Invalid customer data format.");
+            }
+
+            string name = parts[0].Trim();
+            string email = parts[1].Trim();
+            string number = parts[2].Trim();
+
+            int phoneNumber = int.Parse(number.Split(' ')[0]);
+
+            return new Customer(name, email, phoneNumber);
+        }
+        public static void printcustomer()
+        {
+            foreach (var customer in Program.customerList)
+            {
+                Console.WriteLine(customer.Name);
+            }
+        }
     }
 }
 

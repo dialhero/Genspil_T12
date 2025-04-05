@@ -180,20 +180,21 @@ namespace Genspil
 
         private static readonly string RequestFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\mock_requests.csv");
 
-        public static void SaveCustomersToFile(List<Customer> customers)
+        public static void SaveRequestsToFile(List<Customer> customers)
         {
             using (StreamWriter writer = new StreamWriter(RequestFilePath))
             {
                 foreach (Customer customer in customers)
                 {
-                    writer.WriteLine($"Customer: {customer.Name}, {customer.PhoneNumber}");
+                    writer.WriteLine($"Customer: {customer.Name},{customer.Email}, {customer.PhoneNumber}");
 
                     foreach (Request request in customer.requestList)
 {
+                        writer.WriteLine($"Antal:  {request.Amount}");
+
                         foreach (Boardgame game in request.Boardgames)
                         {
-                            writer.WriteLine($"Boardgame: {game.Name}, {game.Edition}, {game.Genre}, " +
-                                             $"{game.PlayerAmount} players, {game.Price} DKK, Condition: {game.GameCondition}");
+                            writer.WriteLine($"Boardgame: {game.Name}, {game.Edition}, {game.Genre}, {game.PlayerAmount} players, {game.Price} DKK, Condition: {game.GameCondition}");
                         }
                     }
 
@@ -201,6 +202,94 @@ namespace Genspil
                 }
             }
         }
+
+        public static List<Customer> LoadRequestsFromFile()
+        {
+            List<Customer> customers = new List<Customer>();
+            Customer currentCustomer = null;
+            Request currentRequest = null;
+
+            if (File.Exists(RequestFilePath))
+            {
+                string[] lines = File.ReadAllLines(RequestFilePath);
+
+                foreach (var line in lines)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                    {
+                        // Hvis linjen er tom, afslut den aktuelle kunde og request
+                        // Tilføj kun request og kunde én gang her
+                        if (currentRequest != null && currentCustomer != null)
+                        {
+                            currentCustomer.requestList.Add(currentRequest); // Tilføj den afsluttede request
+                            currentRequest = null; // Nulstil den aktuelle request
+                        }
+
+                        if (currentCustomer != null)
+                        {
+                            customers.Add(currentCustomer); // Tilføj den afsluttede kunde
+                            currentCustomer = null; // Nulstil den aktuelle kunde
+                        }
+                    }
+                    else if (line.StartsWith("Customer:"))
+                    {
+                        // Hvis der er en eksisterende request, tilføj den til den nuværende kunde
+                        if (currentRequest != null)
+                        {
+                            currentCustomer.requestList.Add(currentRequest);
+                            currentRequest = null;
+                        }
+
+                        // Håndter kundeinformation
+                        string customerData = line.Substring(9).Trim();
+                        currentCustomer = Customer.ParseCustomerData(customerData);
+                        Console.WriteLine($"Parsing customer: {currentCustomer.Name}");
+                    }
+                    else if (line.StartsWith("Antal:") && currentCustomer != null)
+                    {
+                        // Hvis der er en eksisterende request, tilføj den til den nuværende kunde
+                        if (currentRequest != null)
+                        {
+                            currentCustomer.requestList.Add(currentRequest);
+                            currentRequest = null;
+                        }
+
+                        // Håndter request-antal
+                        string amountData = line.Substring(7).Trim();
+                        if (int.TryParse(amountData, out int amount))
+                        {
+                            currentRequest = new Request(amount, currentCustomer);
+                            Console.WriteLine($"Adding request for {amount} items");
+                        }
+                        else
+                        {
+                            throw new FormatException("Invalid amount format.");
+                        }
+                    }
+                    else if (line.StartsWith("Boardgame:") && currentRequest != null)
+                    {
+                        // Håndter boardgame-information
+                        string gameData = line.Substring(10).Trim();
+                        var boardgame = ParseBoardgameFromString(gameData);
+                        currentRequest.AddRequestBoardgame(boardgame);
+                        Console.WriteLine($"Parsing boardgame: {gameData}");
+                    }
+                }
+
+                // Tilføj sidste request og kunde, hvis ikke allerede gjort
+                if (currentRequest != null && currentCustomer != null)
+                {
+                    currentCustomer.requestList.Add(currentRequest);
+                }
+                if (currentCustomer != null)
+                {
+                    customers.Add(currentCustomer);
+                }
+            }
+
+            return customers; // Returner listen af kunder
+        }
+
 
         //public List<Request> LoadRequestsFromFile()
         //{
@@ -220,26 +309,6 @@ namespace Genspil
         //   
 
 
-        public static void SaveCustomersToFile(List<Customer> customers, string filepath)
-        {
-            using (StreamWriter writer = new StreamWriter(filepath, true))
-            {
-                foreach (Customer customer in customers)
-                {
-                    writer.WriteLine($"Customer: {customer.Name}, {customer.PhoneNumber}");
 
-                    foreach (Request request in customer.requestList)
-                    {
-                        foreach (Boardgame game in Request.boardgames) // eller request.boardgames hvis det ikke er static
-                        {
-                            writer.WriteLine($"Boardgame: {game.Name}, {game.Edition}, {game.Genre}, " +
-                                             $"{game.PlayerAmount} players, {game.Price} DKK, Condition: {game.GameCondition}");
-                        }
-                    }
-
-                    writer.WriteLine(); // tom linje mellem kunder
-                }
-            }
-        }
     }
 }

@@ -19,13 +19,20 @@ namespace Genspil
 
                 Files.LoadBoardgames();
 
+                
+                List<Customer> loadedCustomers = Files.LoadRequestsFromFile();
+                Program.customerList = loadedCustomers;
+
+                //Files.SaveRequestsToFile(customerList);
+
 
 
                 while (true)
                 {
                     Console.Clear();
                     systemWindow();
-                    
+                 
+
                     switch (Console.ReadKey().Key)
                     {
                         case ConsoleKey.D1:
@@ -184,14 +191,15 @@ namespace Genspil
                             Request request = new Request(requestAmount, Customer.GetCustomerByPhoneNumber(customerPhoneNumber));
 
                             Request.AddRequestToList(request, Customer.GetCustomerByPhoneNumber(customerPhoneNumber));
-                            request.AddBoardgame(selectedGame);
-                            Files.SaveCustomersToFile(customerList);
+                            request.AddRequestBoardgame(selectedGame);
+                            Files.SaveRequestsToFile(customerList);
                             break;
 
                         case ConsoleKey.D7:
                         case ConsoleKey.NumPad7:
 
                             Console.Clear();
+                            Request.PrintAllRequestList();
                             Console.WriteLine("Request list print");
                             Console.ReadLine();
                             break;
@@ -220,6 +228,8 @@ namespace Genspil
 
                             Console.Clear();
                             Console.WriteLine("Tak for i dag!");
+                            Customer.printcustomer();
+                            Console.ReadLine();
                             //Files.SaveCustomersToFile();
                             
                             return;
