@@ -290,6 +290,28 @@ namespace Genspil
             return customers; // Returner listen af kunder
         }
 
+        public static void SaveRequestCustomerToFile(Customer customer)
+        {
+            using (StreamWriter writer = new StreamWriter(RequestFilePath, append: true)) // append = true tilføjer i stedet for at overskrive
+            {
+                writer.WriteLine($"Customer: {customer.Name},{customer.Email}, {customer.PhoneNumber}");
+
+                if (customer.requestList != null && customer.requestList.Count > 0)
+                {
+                    foreach (Request request in customer.requestList)
+                    {
+                        writer.WriteLine($"Antal:  {request.Amount}");
+
+                        foreach (Boardgame game in request.Boardgames)
+                        {
+                            writer.WriteLine($"Boardgame: {game.Name}, {game.Edition}, {game.Genre}, {game.PlayerAmount} players, {game.Price} DKK, Condition: {game.GameCondition}");
+                        }
+                    }
+                }
+
+                writer.WriteLine(); // tom linje mellem kunder
+            }
+        }
 
         //public List<Request> LoadRequestsFromFile()
         //{

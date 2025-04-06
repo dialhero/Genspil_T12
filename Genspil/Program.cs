@@ -283,6 +283,7 @@ namespace Genspil
             Customer newCustomer = new Customer(name, email, phoneNumber);
             customerList.Add(newCustomer);
             Files.SaveCustomerToFile(newCustomer);
+            Files.SaveRequestCustomerToFile(newCustomer);
             Console.WriteLine($"\nKunde {newCustomer.Name} tilføjet!");
 
         }
