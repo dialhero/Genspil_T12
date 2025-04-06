@@ -193,7 +193,7 @@ namespace Genspil
 
         public static void WarehouseListSorted()
         {
-            Console.WriteLine("skal den sortere efter. 1) navn eller 2) Genre?");
+            Console.WriteLine("skal den sortere efter. 1) Navn eller 2) Genre?");
             int choice = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine($@"
