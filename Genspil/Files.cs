@@ -11,15 +11,15 @@ namespace Genspil
     class Files
     {
         private static readonly string BoardgameFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\mock_boardgames.txt");
+        private static readonly string RequestFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\mock_requests.csv");
+        private static readonly string CustomerFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\mock_customers.csv");
 
         public static void SaveOneToFile(string filename, Boardgame boardgame)
         {
             // Åbn StreamWriter i append-tilstand (true betyder "tilføj til filen")
             using (StreamWriter writer = new StreamWriter(filename, true)) // true betyder "append"
             {
-
                 writer.WriteLine($"{boardgame.Name},{boardgame.Edition},{boardgame.Genre},{boardgame.PlayerAmount},{boardgame.Price},{boardgame.GameCondition},{boardgame.Amount}");
-
             }
         }
         public static void SaveListToFile(string filename)
@@ -95,7 +95,6 @@ namespace Genspil
         {
             SaveOneToFile(BoardgameFilePath, boardgame);
             Console.WriteLine("Gemmer boardgame til fil: " + Path.GetFullPath(BoardgameFilePath));
-
         }
 
         public static void PrintBoardgamesFromFile()
@@ -108,14 +107,7 @@ namespace Genspil
             LoadBoardgamesFromFile(BoardgameFilePath);
         }
 
-
-
-
         //Her starter metoderne til at gemme og hente kunder fra mockdata
-
-        private static readonly string CustomerFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\mock_customers.csv");
-
-
         public static void SaveCustomersToFile()
         {
             // Console.WriteLine("Gemmer til fil: " + Path.GetFullPath(CustomerFilePath)); // Debug
@@ -146,7 +138,6 @@ namespace Genspil
             {
                 Console.WriteLine($"Fejl under gemning af kunde: {ex.Message}");
             }
-
         }
 
         public static void LoadCustomersFromFile()
@@ -176,9 +167,7 @@ namespace Genspil
                 Console.WriteLine($"Filen '{CustomerFilePath}' blev ikke fundet.");
             }
         }
-
-
-        private static readonly string RequestFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\mock_requests.csv");
+        
 
         public static void SaveRequestsToFile(List<Customer> customers)
         {
@@ -197,7 +186,6 @@ namespace Genspil
                             writer.WriteLine($"Boardgame: {game.Name}, {game.Edition}, {game.Genre}, {game.PlayerAmount} players, {game.Price} DKK, Condition: {game.GameCondition}");
                         }
                     }
-
                     writer.WriteLine(); // tom linje mellem kunder
                 }
             }
@@ -275,7 +263,6 @@ namespace Genspil
                         Console.WriteLine($"Parsing boardgame: {gameData}");
                     }
                 }
-
                 // Tilføj sidste request og kunde, hvis ikke allerede gjort
                 if (currentRequest != null && currentCustomer != null)
                 {
@@ -286,7 +273,6 @@ namespace Genspil
                     customers.Add(currentCustomer);
                 }
             }
-
             return customers; // Returner listen af kunder
         }
 
@@ -308,29 +294,8 @@ namespace Genspil
                         }
                     }
                 }
-
                 writer.WriteLine(); // tom linje mellem kunder
             }
         }
-
-        //public List<Request> LoadRequestsFromFile()
-        //{
-        //    List<Request> requests = new List<Request>();
-
-        //    using (StreamReader reader = new StreamReader(RequestFilePath))
-        //    {
-        //        string line;
-        //        while ((line = reader.ReadLine()) != null)
-        //        {
-        //            if (!string.IsNullOrEmpty(line))
-        //            {
-        //                requests.Add(Request)
-        //            }
-        //    }
-        //    return null;
-        //   
-
-
-
     }
 }

@@ -1,7 +1,5 @@
 ﻿namespace Genspil
 {
-
-
     internal class Customer
     {
         private string _name;
@@ -36,7 +34,6 @@
             requestList = new List<Request>();
         }
 
-
         public Customer(string name, string email, int phoneNumber)
         {
             _name = name ?? "ukendt";
@@ -44,8 +41,6 @@
             _phoneNumber = phoneNumber > 0 ? phoneNumber : 00000000;
             requestList = new List<Request>();
         }
-
-
 
         public static void ShowCustomers() //Til at teste add metoden og CSV filen
         {
@@ -65,7 +60,6 @@
                     return customer;
                 }
             }
-
             return null;
         }
 
@@ -74,16 +68,13 @@
         {
             Customer customer = customers.FirstOrDefault(c => c.PhoneNumber == phoneNumber);
 
-
             if (customer != null)
             {
                 return $"Navn: {customer.Name}, Email: {customer.Email}, Telefonnummer: {customer.PhoneNumber}";
-
             }
             else
             {
                 return "Brugeren er ikke fundet.";
-
             }
 
         }
@@ -93,17 +84,17 @@
 
             if (parts.Length < 2)
             {
-                throw new FormatException("Invalid customer data format.");
+                throw new FormatException("Fejl i kundendata.");
             }
 
             string name = parts[0].Trim();
             string email = parts[1].Trim();
             string number = parts[2].Trim();
-
             int phoneNumber = int.Parse(number.Split(' ')[0]);
-
             return new Customer(name, email, phoneNumber);
         }
+        
+        //Metode brugt til debugging
         public static void printcustomer()
         {
             foreach (var customer in Program.customerList)

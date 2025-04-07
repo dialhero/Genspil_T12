@@ -97,7 +97,7 @@ namespace Genspil
                             }
                             Boardgame boardgame = new Boardgame(boardName, edition, genre, playerAmount, price, gameCondition, amount);
 
-                            AddGame(boardgame);
+                            AddBoardgame(boardgame);
                             Files.SaveBoardgameToFile(boardgame);
                             break;
 
@@ -214,7 +214,7 @@ namespace Genspil
             }
         }
 
-        public static void AddGame(Boardgame newGame)
+        public static void AddBoardgame(Boardgame newGame)
         {
             var existingBoardgame = allBoardgames.FirstOrDefault(bg => bg.Name == newGame.Name && bg.Edition == newGame.Edition && bg.GameCondition == newGame.GameCondition);
 
@@ -233,9 +233,7 @@ namespace Genspil
                 Files.SaveOneToFile("boardgames.txt", newBoardgame);
                 Console.WriteLine($"Ny {newGame.Name} spil er tilføjet.");
             }
-
         }
-
 
         public static void AddCustomer(string name, string email, int phoneNumber) //SaveCustomerToFile lagt ind i Files, og metoden kaldes efter AddNewCustomer
         {
@@ -244,9 +242,7 @@ namespace Genspil
             Files.SaveCustomerToFile(newCustomer);
             Files.SaveRequestCustomerToFile(newCustomer);
             Console.WriteLine($"\nKunde {newCustomer.Name} tilføjet!");
-
         }
-
 
         public static void DeleteCustomer(int phoneNumber) //Vi fjerner kunde via telefonnummer. Vi tjekker også for om nummeret findes. 
         {
@@ -261,8 +257,8 @@ namespace Genspil
                 Console.WriteLine($"Ingen kunde fundet med telefonnummer {phoneNumber}.");
             }
             Files.SaveCustomersToFile();
+            Files.SaveRequestsToFile(customerList);
         }
-
 
         public static void systemWindow()
         {
@@ -275,14 +271,12 @@ namespace Genspil
         |       4. Fjern kunde                                 |
         |       5. Søg efter brætspil                          |
         |       6. Opret forespørgsel på et brætspil           |
-        |       7. Print foresprøgselsliste                    |
+        |       7. Print forespørgselsliste                    |
         |       8. Opdater antal brætspil                      |
         |       9. Lageroptælling                              |
         |       0. Afslut program                              |
         | ---------------------------------------------------- |");
 
         }
-        
-
     }
 }
