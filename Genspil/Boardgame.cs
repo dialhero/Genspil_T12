@@ -19,7 +19,6 @@ namespace Genspil
         private int _playerAmount;
         private double _price;
         private Condition _gameCondition;
-        private Guid _id;
 
         public enum Condition
         {
@@ -39,7 +38,6 @@ namespace Genspil
             this._price = price;
             this._gameCondition = gameCondition;
             this._amount = amount;
-            this._id = Guid.NewGuid();
         }
 
         public int Amount
@@ -85,20 +83,18 @@ namespace Genspil
             set => _gameCondition = value;
         }
 
-
         public static void PrintListWares()
         {
             var sortedBoardgames = Program.allBoardgames.OrderBy(bg => bg.Name).ToList();
-
             Console.WriteLine(
-
-          "Name".PadRight(28) +
-          "Edition".PadRight(23) +
-          "Genre".PadRight(15) +
-          "Players".PadRight(10) +
-          "Price".PadRight(10) +
-          "Stand".PadRight(10) +
-          "Antal".PadRight(10));
+            "Navn".PadRight(28) +
+            "Udgave".PadRight(23) +
+            "Genre".PadRight(15) +
+            "Spillere".PadRight(10) +
+            "Pris".PadRight(10) +
+            "Stand".PadRight(10) +
+            "Antal".PadRight(10)
+            );
 
             foreach (var boardgame in sortedBoardgames)
             {
