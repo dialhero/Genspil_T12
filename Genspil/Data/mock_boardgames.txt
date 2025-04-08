@@ -33,3 +33,4 @@ A la carte: Dessert,Original,Familie,3,100,perfect,1
 Bad People,Original,Party,6,300,perfect,0
 Poker,Texas,Voksen,3,200,perfect,2
 Uno,Original,Familie,6,75,scratched,3
+Exploding Kittens,Original,Party,8,80,perfect,2

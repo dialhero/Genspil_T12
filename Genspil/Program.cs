@@ -28,7 +28,7 @@ namespace Genspil
                     systemWindow();
                     switch (Console.ReadKey().Key)
                     {
-                        case ConsoleKey.D1:
+                        case ConsoleKey.D1: //Tilføj et brætspil
                         case ConsoleKey.NumPad1:
                             Console.Clear();                            
                             Console.Write("Indtast spillets navn: ");
@@ -43,7 +43,7 @@ namespace Genspil
                             int playerAmount;
                             while (true)
                             {
-                                Console.Write("Indtast spillets player amount: ");
+                                Console.Write("Indtast spillets max antal spillere: ");
                                 try
                                 {
                                     playerAmount = Convert.ToInt32(Console.ReadLine());
@@ -51,7 +51,7 @@ namespace Genspil
                                 }
                                 catch (FormatException)
                                 {
-                                    Console.WriteLine("Indtast et tal");
+                                    Console.WriteLine("Indtast et tal!");
                                 }
                             }
                             double price;
@@ -65,7 +65,7 @@ namespace Genspil
                                 }
                                 catch (FormatException)
                                 {
-                                    Console.WriteLine("Indtast et tal");
+                                    Console.WriteLine("Indtast et tal!");
                                 }
                             }
 
@@ -84,7 +84,6 @@ namespace Genspil
                             int amount;
                             while (true)
                             {
-                                Console.Write("Hvor mange spil: ");
                                 try
                                 {
                                     amount = Convert.ToInt32(Console.ReadLine());
@@ -92,7 +91,7 @@ namespace Genspil
                                 }
                                 catch (FormatException)
                                 {
-                                    Console.WriteLine("Indtast et tal");
+                                    Console.WriteLine("Indtast et tal!");
                                 }
                             }
                             Boardgame boardgame = new Boardgame(boardName, edition, genre, playerAmount, price, gameCondition, amount);
